@@ -1,7 +1,4 @@
 package pl.kubie.catalogue;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -31,7 +28,7 @@ public class CatalogueApplication {
 
 			//POBRANIE OPCJI OD UŻYTKOWNIKA
 			System.out.println("Wybierz opcję i zatwierdź klawiszem ENTER");
-			wyborUzytkownika = (getUserInput());
+			wyborUzytkownika = (getUserInput().nextInt);
 switch (wyborUzytkownika){
 
 
@@ -60,7 +57,7 @@ switch (wyborUzytkownika){
 				}
 				while (!poprawny); //WALIDUJ WYBÓR
 
-			}case 4:  {
+			case 4:  {
 				System.out.print("Zamykam program...");
 				try {
 					Thread.sleep(1000);
@@ -70,11 +67,11 @@ switch (wyborUzytkownika){
 				System.exit(0);
 			}
 
-		} while (wyborUzytkownika != "3");
+		while (wyborUzytkownika != "3");
 	}
 
 
-	private static void dodajFilm() {
+		private static void dodajFilm() {
 		Film Film = new Film();
 
 		System.out.println("#############################################################");

@@ -9,7 +9,7 @@ public class Film {
     // TODO: 02.02.2018
 
     // Zmienić oceny na rate
-    //Dodać klase abstrakcyjną z typami filmów
+    //Dodać klase enum  z typami filmów
 
 
 
