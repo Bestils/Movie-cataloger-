@@ -11,15 +11,13 @@ public class Filmy {
 
 
 
-    /**
-     * Created by dobry on 02.10.16.
-     */
-    public class Film {
 
-        public List<Film> Filmy = new ArrayList<Film>();
+    public class WypiszDaneOFilmie {
+
+        public List<Film> WypiszDaneOFilmie = new ArrayList<Film>();
 
         public void dodajFilma(Film Film) {
-            Filmy.add(Film);
+            WypiszDaneOFilmie.add(Film);
             System.out.println("Dziękuję, dodałem Filma do kolekcji" + "\n");
         }
 
@@ -41,11 +39,11 @@ public class Filmy {
             System.out.println("#                 ***Przedstawiam Film***                   #");
             System.out.println("#                                                           #");
             System.out.println("#############################################################");
-            System.out.println("Tytół: " + Filmy.get(indeksFilma).getmovietitle());
-            System.out.println("Gatunek: " + Filmy.get(indeksFilma).getMovieType());
-            System.out.println("Aktualna Ocena: " + Filmy.get(indeksFilma).getOcena());
+            System.out.println("Tytół: " + Filmy.get(indeksFilma).getImieFilma());
+            System.out.println("Gatunek: " + Filmy.get(indeksFilma).getDataUrodzenia());
+            System.out.println("Aktualna Ocena: " + Filmy.get(indeksFilma).getWaga());
             System.out.println("\n");
         }
     }
-    
+
 }

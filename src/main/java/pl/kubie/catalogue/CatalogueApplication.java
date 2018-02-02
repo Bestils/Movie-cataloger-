@@ -5,9 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-/**
- * Created by dobry on 29.09.16.
- */
+
 public class CatalogueApplication {
 
 	static Scanner sc = new Scanner(System.in);
@@ -28,26 +26,29 @@ public class CatalogueApplication {
 			System.out.println("#############################################################");
 			System.out.println("[1] Dodaj Film");
 			System.out.println("[2] Wypisz wszystkie filmy");
-			System.out.println("[3] Zamknij program" + "\n");
+			System.out.println("[3] Oceń film");
+			System.out.println("[4] Zamknij program" + "\n");
 
 			//POBRANIE OPCJI OD UŻYTKOWNIKA
 			System.out.println("Wybierz opcję i zatwierdź klawiszem ENTER");
 			wyborUzytkownika = (getUserInput());
+switch (wyborUzytkownika){
 
-			if (wyborUzytkownika.matches("1")) {
+
+			case 1:	 {
 				//DODAJ Film DO KOLEKCJI
 				dodajFilm();
 
-			} else if (wyborUzytkownika.matches("2")) {
+			}case 2: {
 				//WYŚWIETL FilmY
-				Filmy.wyswietlFilmy();
+				Filmy.wyswietlFilmy();}
 
 				//WYBIERZ Film Z LISTY
 				System.out.println("Wybierz numer Film, który ma się Wyświetlić i zatwierdź klawiszem ENTER");
 				int numerFilm;
 				do {
 					numerFilm = Integer.parseInt(getUserInput());
-					if (numerFilm >= 0 && numerFilm < FilmDao.Filmy.size()) {
+					if (numerFilm >= 0 && numerFilm < Film.Filmy.size()) {
 						poprawny = true;
 
 						//PRZEDSTAW Film
@@ -59,7 +60,7 @@ public class CatalogueApplication {
 				}
 				while (!poprawny); //WALIDUJ WYBÓR
 
-			} else if (wyborUzytkownika.matches("3")) {
+			}case 4:  {
 				System.out.print("Zamykam program...");
 				try {
 					Thread.sleep(1000);
@@ -104,7 +105,7 @@ public class CatalogueApplication {
 		System.out.print("Podaj Jaki to gatunek  Filmu: ");
 		Film.SetType(getUserInput());
 
-		FilmDao.dodajFilm(Film);
+		Filmy.dodajFilm(Film);
 	}
 
 	public static String getUserInput() {
