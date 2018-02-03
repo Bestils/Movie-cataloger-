@@ -87,6 +87,24 @@ switch (wyborUzytkownika){
 
 	}
 	break;
+	case 5:{
+		System.out.println("#############################################################");
+		System.out.println("#                                                           #");
+		System.out.println("#                 ***Wyszukaj film wedłóg***                #");
+		System.out.println("#                                                           #");
+		System.out.println("#############################################################");
+		System.out.println("[1] Nazwy");
+		System.out.println("[2] Kategori");
+		System.out.println("[3] Oceny");
+
+
+	}
+	break;
+	case 7:{
+		WypiszDaneOFilmie.wyswietlFilmy();
+		System.out.println("Wybierz film jaki chcesz usunąć");
+		WypiszDaneOFilmie.UsuńFilmZKolekcji(NumberScanner.nextInt());
+	}break;
 			case 8:  {
 				System.out.print("Zamykam program...");
 				try {

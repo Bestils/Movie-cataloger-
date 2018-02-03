@@ -14,9 +14,13 @@ import java.util.Scanner;
 
         public void dodajFilmDoKolekcji(Film ExampleMovie) {
             Filmy.add(ExampleMovie);
-            System.out.println("Dziękuję, dodałem Filma do kolekcji" + "\n");
+            System.out.println("Dziękuję, dodałem Film do kolekcji" + "\n");
         }
 
+    public void UsuńFilmZKolekcji(Integer  Index) {
+        Filmy.remove(Index);
+        System.out.println("Dziękuję, Usunąłem Film z kolekcji" + "\n");
+    }
         public void wyswietlFilmy() {
             System.out.println("#############################################################");
             System.out.println("#                                                           #");
