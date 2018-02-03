@@ -7,7 +7,7 @@ public class CatalogueApplication {
 
 	static Scanner sc = new Scanner(System.in);
 
-	static Filmy Filmy= new Filmy();
+	static WypiszDaneOFilmie WypiszDaneOFilmie= new WypiszDaneOFilmie();
 
 	public static void main(String[] args) {
 
@@ -34,22 +34,22 @@ switch (wyborUzytkownika){
 
 			case 1:	 {
 				//DODAJ Film DO KOLEKCJI
-				WypiszDaneOFilmie.dodajFilm(sc.nextLine());
-
-			}case 2: {
+				dodajFilm();
+			}
+			case 2: {
 				//WYŚWIETL FilmY
 		WypiszDaneOFilmie.wyswietlFilmy();}
 
 				//WYBIERZ Film Z LISTY
 				System.out.println("Wybierz numer Film, który ma się Wyświetlić i zatwierdź klawiszem ENTER");
-				int numerFilm;
+				Integer numerFilmu;
 				do {
-					numerFilm = Integer.parseInt(sc.nextLine());
-					if (numerFilm >= 0 && numerFilm < Film.Filmy.size()) {
+					numerFilmu = Integer.parseInt(sc.nextLine());
+					if (numerFilmu >= 0 && numerFilmu < WypiszDaneOFilmie.Filmy.size()) {
 						poprawny = true;
 
 						//PRZEDSTAW Film
-						Filmy.Wyświetl(numerFilm);
+						WypiszDaneOFilmie.wyswietlFilmy();
 					} else {
 						System.out.println("Błędny numer Film! Podajnumer ponownie.");
 						poprawny = false;
@@ -70,8 +70,11 @@ switch (wyborUzytkownika){
 
 	}
 
+		} while(true);
+	}
 
-		private static void dodajFilm() {
+
+		private static void dodajFilm(){
 		Film Film = new Film();
 
 		System.out.println("#############################################################");
@@ -94,7 +97,7 @@ switch (wyborUzytkownika){
 			OcenaPobrana = sc.nextLine();
 
 			if (wzóroceny.matcher(OcenaPobrana).matches()) {
-				Film.SetMovieRate(Float.valueOf(OcenaPobrana));
+				Film.SetMovieRate(Integer.valueOf(OcenaPobrana));
 			}
 		} while (Film.getRate() == null);
 

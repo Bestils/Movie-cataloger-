@@ -8,10 +8,10 @@ import java.util.List;
 
     public class WypiszDaneOFilmie {
 
-        public List<Film> WypiszDaneOFilmie = new ArrayList<Film>();
+        public List<Film> Filmy = new ArrayList<Film>();
 
         public void dodajFilm(Film film) {
-            WypiszDaneOFilmie.add(film);
+            Filmy.add(film);
             System.out.println("Dziękuję, dodałem Filma do kolekcji" + "\n");
         }
 
@@ -21,23 +21,23 @@ import java.util.List;
             System.out.println("#                     ***Lista Filmów***                     #");
             System.out.println("#                                                           #");
             System.out.println("#############################################################");
-            for (Film film : WypiszDaneOFilmie) {
-                System.out.println("Film [" + WypiszDaneOFilmie.indexOf(film) + "]: " + film.getTitle());
+            for (Film film : Filmy) {
+                System.out.println("Film [" + Filmy.indexOf(film) + "]: " + film.getTitle());
             }
         }
 
-        public void przedstawSie(int indeksFilma) {
+        public void przedstawSie(Integer indeksFilma) {
             System.out.println("\n");
             System.out.println("#############################################################");
             System.out.println("#                                                           #");
             System.out.println("#                 ***Przedstawiam Film***                   #");
             System.out.println("#                                                           #");
             System.out.println("#############################################################");
-            System.out.println("Tytół: " + WypiszDaneOFilmie.get(indeksFilma).getTitle());
-            System.out.println("Gatunek: " + WypiszDaneOFilmie.get(indeksFilma).getType());
-            System.out.println("Aktualna Ocena: " + WypiszDaneOFilmie.get(indeksFilma).getRate());
+            System.out.println("Tytół: " + Filmy.get(indeksFilma).getTitle());
+            System.out.println("Gatunek: " + Filmy.get(indeksFilma).getType());
+            System.out.println("Aktualna Ocena: " + Filmy.get(indeksFilma).getRate());
             System.out.println("\n");
         }
     }
 
-}
+
