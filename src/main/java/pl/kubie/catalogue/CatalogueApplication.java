@@ -1,23 +1,18 @@
 package pl.kubie.catalogue;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-/**
- * Created by dobry on 29.09.16.
- */
+
 public class CatalogueApplication {
 
 	static Scanner sc = new Scanner(System.in);
 
-	static Filmy Filmy= new Filmy();
+	static WypiszDaneOFilmie WypiszDaneOFilmie= new WypiszDaneOFilmie();
 
 	public static void main(String[] args) {
 
 		//MENU
-		String  wyborUzytkownika;
+		Integer  wyborUzytkownika;
 		boolean poprawny;
 		do {
 			//WYŚWIETLENIE POZYCJI MENU
@@ -28,30 +23,33 @@ public class CatalogueApplication {
 			System.out.println("#############################################################");
 			System.out.println("[1] Dodaj Film");
 			System.out.println("[2] Wypisz wszystkie filmy");
-			System.out.println("[3] Zamknij program" + "\n");
+			System.out.println("[3] Oceń film");
+			System.out.println("[4] Zamknij program" + "\n");
 
 			//POBRANIE OPCJI OD UŻYTKOWNIKA
 			System.out.println("Wybierz opcję i zatwierdź klawiszem ENTER");
-			wyborUzytkownika = (getUserInput());
+			wyborUzytkownika = (sc.nextInt());
+switch (wyborUzytkownika){
 
-			if (wyborUzytkownika.matches("1")) {
+
+			case 1:	 {
 				//DODAJ Film DO KOLEKCJI
 				dodajFilm();
-
-			} else if (wyborUzytkownika.matches("2")) {
+			}
+			case 2: {
 				//WYŚWIETL FilmY
-				Filmy.wyswietlFilmy();
+		WypiszDaneOFilmie.wyswietlFilmy();}
 
 				//WYBIERZ Film Z LISTY
 				System.out.println("Wybierz numer Film, który ma się Wyświetlić i zatwierdź klawiszem ENTER");
-				int numerFilm;
+				Integer numerFilmu;
 				do {
-					numerFilm = Integer.parseInt(getUserInput());
-					if (numerFilm >= 0 && numerFilm < FilmDao.Filmy.size()) {
+					numerFilmu = Integer.parseInt(sc.nextLine());
+					if (numerFilmu >= 0 && numerFilmu < WypiszDaneOFilmie.Filmy.size()) {
 						poprawny = true;
 
 						//PRZEDSTAW Film
-						Filmy.Wyświetl(numerFilm);
+						WypiszDaneOFilmie.wyswietlFilmy();
 					} else {
 						System.out.println("Błędny numer Film! Podajnumer ponownie.");
 						poprawny = false;
@@ -59,7 +57,7 @@ public class CatalogueApplication {
 				}
 				while (!poprawny); //WALIDUJ WYBÓR
 
-			} else if (wyborUzytkownika.matches("3")) {
+			case 4:  {
 				System.out.print("Zamykam program...");
 				try {
 					Thread.sleep(1000);
@@ -69,11 +67,14 @@ public class CatalogueApplication {
 				System.exit(0);
 			}
 
-		} while (wyborUzytkownika != "3");
+
+	}
+
+		} while(true);
 	}
 
 
-	private static void dodajFilm() {
+		private static void dodajFilm(){
 		Film Film = new Film();
 
 		System.out.println("#############################################################");
@@ -84,7 +85,7 @@ public class CatalogueApplication {
 
 		//Film
 		System.out.print("Podaj Tytół Filmu: ");
-		Film.setmovietitle(getUserInput());
+		Film.SetMovieTitle(sc.nextLine());
 
 
 
@@ -93,23 +94,21 @@ public class CatalogueApplication {
 		String  OcenaPobrana;
 		do {
 			System.out.print("Podaj Ocene Film: ");
-			OcenaPobrana = getUserInput();
+			OcenaPobrana = sc.nextLine();
 
 			if (wzóroceny.matcher(OcenaPobrana).matches()) {
-				Film.Setocena(Float.valueOf(OcenaPobrana));
+				Film.SetMovieRate(Integer.valueOf(OcenaPobrana));
 			}
-		} while (Film.getOcena() == null);
+		} while (Film.getRate() == null);
 
 		//Gatunek Filmu
 		System.out.print("Podaj Jaki to gatunek  Filmu: ");
-		Film.SetType(getUserInput());
+		Film.SetMovieTitle(sc.nextLine());
 
-		FilmDao.dodajFilm(Film);
+			WypiszDaneOFilmie.dodajFilm(Film);
 	}
 
-	public static String getUserInput() {
-		return sc.nextLine().trim();
-	}
+
 
 
 }
