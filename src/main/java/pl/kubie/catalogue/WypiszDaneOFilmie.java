@@ -5,19 +5,13 @@ import java.util.List;
 /**
  * Created by Gladus on 02.02.2018.
  */
-public class Filmy {
-    
-    
-
-
-
 
     public class WypiszDaneOFilmie {
 
         public List<Film> WypiszDaneOFilmie = new ArrayList<Film>();
 
-        public void dodajFilma(Film Film) {
-            WypiszDaneOFilmie.add(Film);
+        public void dodajFilm(Film film) {
+            WypiszDaneOFilmie.add(film);
             System.out.println("Dziękuję, dodałem Filma do kolekcji" + "\n");
         }
 
@@ -27,8 +21,8 @@ public class Filmy {
             System.out.println("#                     ***Lista Filmów***                     #");
             System.out.println("#                                                           #");
             System.out.println("#############################################################");
-            for (Film Film : Filmy) {
-                System.out.println("Film [" + Filmy.indexOf(Film) + "]: " + Film.getTitleFilma());
+            for (Film film : WypiszDaneOFilmie) {
+                System.out.println("Film [" + WypiszDaneOFilmie.indexOf(film) + "]: " + film.getTitle());
             }
         }
 
@@ -39,9 +33,9 @@ public class Filmy {
             System.out.println("#                 ***Przedstawiam Film***                   #");
             System.out.println("#                                                           #");
             System.out.println("#############################################################");
-            System.out.println("Tytół: " + Filmy.get(indeksFilma).getImieFilma());
-            System.out.println("Gatunek: " + Filmy.get(indeksFilma).getDataUrodzenia());
-            System.out.println("Aktualna Ocena: " + Filmy.get(indeksFilma).getWaga());
+            System.out.println("Tytół: " + WypiszDaneOFilmie.get(indeksFilma).getTitle());
+            System.out.println("Gatunek: " + WypiszDaneOFilmie.get(indeksFilma).getType());
+            System.out.println("Aktualna Ocena: " + WypiszDaneOFilmie.get(indeksFilma).getRate());
             System.out.println("\n");
         }
     }

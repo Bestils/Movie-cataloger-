@@ -14,22 +14,42 @@ public class Film {
 
 
 private String title,type;
-private Integer rate;
 
 
-    Film(String title, Integer rate, String type){
-this.rate=rate;
-this.title=title;
-this.type=type;
+
+    private Integer rate;
+
+
+    Film(){
+
 
     }
 
-    void setType(String Type){
+    void SetMovieType(String Type){
 
         this.type=type;
     }
-    void setmovietitle(String title){
+    void SetMovieTitle(String title){
 
         this.title=title;
     }
+    void SetMovieRate( Integer rate){
+
+        this.rate=rate;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public Integer getRate() {
+        return rate;
+    }
+
 }
+
+

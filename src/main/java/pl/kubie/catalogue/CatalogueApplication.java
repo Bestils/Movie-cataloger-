@@ -12,7 +12,7 @@ public class CatalogueApplication {
 	public static void main(String[] args) {
 
 		//MENU
-		String  wyborUzytkownika;
+		Integer  wyborUzytkownika;
 		boolean poprawny;
 		do {
 			//WYŚWIETLENIE POZYCJI MENU
@@ -28,23 +28,23 @@ public class CatalogueApplication {
 
 			//POBRANIE OPCJI OD UŻYTKOWNIKA
 			System.out.println("Wybierz opcję i zatwierdź klawiszem ENTER");
-			wyborUzytkownika = (getUserInput().nextInt);
+			wyborUzytkownika = (sc.nextInt());
 switch (wyborUzytkownika){
 
 
 			case 1:	 {
 				//DODAJ Film DO KOLEKCJI
-				dodajFilm();
+				WypiszDaneOFilmie.dodajFilm(sc.nextLine());
 
 			}case 2: {
 				//WYŚWIETL FilmY
-				Filmy.wyswietlFilmy();}
+		WypiszDaneOFilmie.wyswietlFilmy();}
 
 				//WYBIERZ Film Z LISTY
 				System.out.println("Wybierz numer Film, który ma się Wyświetlić i zatwierdź klawiszem ENTER");
 				int numerFilm;
 				do {
-					numerFilm = Integer.parseInt(getUserInput());
+					numerFilm = Integer.parseInt(sc.nextLine());
 					if (numerFilm >= 0 && numerFilm < Film.Filmy.size()) {
 						poprawny = true;
 
@@ -67,7 +67,7 @@ switch (wyborUzytkownika){
 				System.exit(0);
 			}
 
-		while (wyborUzytkownika != "3");
+
 	}
 
 
@@ -82,7 +82,7 @@ switch (wyborUzytkownika){
 
 		//Film
 		System.out.print("Podaj Tytół Filmu: ");
-		Film.setmovietitle(getUserInput());
+		Film.SetMovieTitle(sc.nextLine());
 
 
 
@@ -91,23 +91,21 @@ switch (wyborUzytkownika){
 		String  OcenaPobrana;
 		do {
 			System.out.print("Podaj Ocene Film: ");
-			OcenaPobrana = getUserInput();
+			OcenaPobrana = sc.nextLine();
 
 			if (wzóroceny.matcher(OcenaPobrana).matches()) {
-				Film.Setocena(Float.valueOf(OcenaPobrana));
+				Film.SetMovieRate(Float.valueOf(OcenaPobrana));
 			}
-		} while (Film.getOcena() == null);
+		} while (Film.getRate() == null);
 
 		//Gatunek Filmu
 		System.out.print("Podaj Jaki to gatunek  Filmu: ");
-		Film.SetType(getUserInput());
+		Film.SetMovieTitle(sc.nextLine());
 
-		Filmy.dodajFilm(Film);
+			WypiszDaneOFilmie.dodajFilm(Film);
 	}
 
-	public static String getUserInput() {
-		return sc.nextLine().trim();
-	}
+
 
 
 }
