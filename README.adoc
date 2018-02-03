@@ -3,7 +3,7 @@
 == Wymagania
 
 Tematem projektu jest aplikacja do katalogowania i oceny.
-Oceniać można np. WypiszDaneOFilmiey, gry komputerowe, książki, produkty.
+Oceniać można np. WypiszDaneOMovieiey, gry komputerowe, książki, produkty.
 Aplikacja powinna umożliwiać:
 
 . Dodawanie nowych przedmiotów
