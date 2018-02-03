@@ -27,7 +27,7 @@ private String title,type;
 
     void SetMovieType(String Type){
 
-        this.type=type;
+        this.type=Type;
     }
     void SetMovieTitle(String title){
 
