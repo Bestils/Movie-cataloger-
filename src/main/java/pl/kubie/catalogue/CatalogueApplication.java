@@ -27,7 +27,7 @@ public class CatalogueApplication {
                     showAllMovies();
                     break;
                 case View.CHANGE_RATE: {
-                    view.ShowMovies();
+                    view.ShowmovieDatabase(movieDatabase.findById(numerMovieu));
                     System.out.println("Chose movie to change it rating");
                     view.SetRate(NumberScanner.nextInt());
 
@@ -45,13 +45,13 @@ public class CatalogueApplication {
 
                 break;
                 case View.AD_COMMENTARY: {
-                    view.ShowMovies();
+                    movieDatabase.findall();
                     System.out.println("Chose movie add Commentary");
                     view.AddComment(NumberScanner.nextInt());
                 }
                 break;
                 case View.DELETE_MOVIE: {
-                    view.ShowMovies();
+                    movieDatabase.findall();
                     System.out.println("Chose movie to delete ");
                     view.DeleteMovie(NumberScanner.nextInt());
                 }
@@ -72,18 +72,18 @@ public class CatalogueApplication {
 
     private static void showAllMovies() {
         boolean poprawny;
-        view.ShowMovies();
+        view.ShowmovieDatabase();
 
         //WYBIERZ Movie Z LISTY
         System.out.println("Chose number of movie whose you want and push ENTER");
         Integer numerMovieu;
         do {
             numerMovieu = NumberScanner.nextInt();
-            if (numerMovieu >= 0 && numerMovieu < view.Movies.size()) {
+            if (numerMovieu >= 0 && numerMovieu <  movieDatabase.findById(numerMovieu).size()) {
                 poprawny = true;
 
                 //PRZEDSTAW Movie
-                view.showMovieInformations(numerMovieu);
+                view.showMovieInformations(MovieDatabase.find);
             } else {
                 System.out.println("Bad  Movie number! Please give correct number");
                 poprawny = false;
