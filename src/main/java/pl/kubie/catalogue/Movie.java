@@ -11,8 +11,9 @@ public class Movie {
 
     // TODO: 02.02.2018
 
-    // Zmienić oceny na rate
-    //Dodać klase enum  z typami Movieów
+
+// Dodać komentarze
+    // Zrobić funkcje sortującą
 
 
 

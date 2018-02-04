@@ -26,12 +26,12 @@ public class CatalogueApplication {
 			System.out.println("[3] Change Movie Rate");
 			System.out.println("[4] Change Movie Category ");
 			System.out.println("[5] Sort Movies By //niedziała");
-			System.out.println("[6] Add Commentary to Movie//niedziała");
+			System.out.println("[6] Add Commentary to Movie");
 			System.out.println("[7] Delete Movie  ");
 			System.out.println("[8] Close Program" + "\n");
 
 			//POBRANIE OPCJI OD UŻYTKOWNIKA
-			System.out.println("Wybierz opcję i zatwierdź klawiszem ENTER");
+			System.out.println("Chose option and push ENTER");
 			wyborUzytkownika = (NumberScanner.nextInt());
 			switch (wyborUzytkownika){
 
@@ -46,7 +46,7 @@ public class CatalogueApplication {
 					ShowMovieInfos.ShowMovies();
 
 					//WYBIERZ Movie Z LISTY
-					System.out.println("Wybierz numer Movie, który ma się Wyświetlić i zatwierdź klawiszem ENTER");
+					System.out.println("Chose number of movie whose you want and push ENTER");
 					Integer numerMovieu;
 					do {
 						numerMovieu = NumberScanner.nextInt();
@@ -56,7 +56,7 @@ public class CatalogueApplication {
 							//PRZEDSTAW Movie
 							ShowMovieInfos.ShowMovieInformations(numerMovieu);
 						} else {
-							System.out.println("Błędny numer Movie! Podajnumer ponownie.");
+							System.out.println("Bad  Movie number! Please give correct number");
 							poprawny = false;
 						}
 					}
@@ -67,53 +67,58 @@ public class CatalogueApplication {
 
 
 					ShowMovieInfos.ShowMovies();
-					System.out.println("Wybierz Movie jakiemu chcesz zmienić ocenę");
+					System.out.println("Chose movie to change it rating");
 					ShowMovieInfos.SetRate(NumberScanner.nextInt());
-
-
-
 
 				}
 				case 4:{
 
-
 					ShowMovieInfos.ShowMovies();
-					System.out.println("Wybierz Movie jaki chcesz zmienić Kategorię");
+					System.out.println("Chose movie to change it category");
 					ShowMovieInfos.SetCategory(NumberScanner.nextInt());
-
-
-
 
 				}
 				break;
 				case 5:{
 					System.out.println("#############################################################");
 					System.out.println("#                                                           #");
-					System.out.println("#                 ***Wyszukaj Movie wedłóg***                #");
+					System.out.println("#                 ***Search movie by:***                  #");
 					System.out.println("#                                                           #");
 					System.out.println("#############################################################");
-					System.out.println("[1] Nazwy");
-					System.out.println("[2] Kategori");
-					System.out.println("[3] Oceny");
+					System.out.println("[1] Title");
+					System.out.println("[2] Category");
+					System.out.println("[3] Rating");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 				}
 				break;
 				case 6:{
-
-
-
-
-
+					ShowMovieInfos.ShowMovies();
+					System.out.println("Chose movie add Commentary");
+					ShowMovieInfos.AddComment(NumberScanner.nextInt());
 				}
 				break;
 				case 7:{
 					ShowMovieInfos.ShowMovies();
-					System.out.println("Wybierz Movie jaki chcesz usunąć");
+					System.out.println("Chose movie to delete ");
 					ShowMovieInfos.DeleteMovie(NumberScanner.nextInt());
 				}break;
 				case 8:  {
-					System.out.print("Zamykam program...");
+					System.out.print("Program is closed ");
 					try {
 						Thread.sleep(1000);
 					} catch (InterruptedException e) {
@@ -121,13 +126,10 @@ public class CatalogueApplication {
 					}
 					System.exit(0);
 				}
-
-
 			}
 
 		} while(true);
 	}
-
 
 	private static void CreateNewMovie(){
 		Movie JakiśMovie = new Movie();
@@ -135,13 +137,13 @@ public class CatalogueApplication {
 
 		System.out.println("#############################################################");
 		System.out.println("#                                                           #");
-		System.out.println("#                   ***DODAWANIE Movieu***                   #");
+		System.out.println("#                   ***Adding Movieu***                   #");
 		System.out.println("#                                                           #");
 		System.out.println("#############################################################");
 
 		String MovieTitle;
 
-		System.out.print("Podaj Tytół Movieu: ");
+		System.out.print("Give  Movie Title: ");
 		MovieTitle = StringScanner.nextLine();
 		JakiśMovie.SetMovieTitle(MovieTitle);
 
@@ -151,13 +153,9 @@ public class CatalogueApplication {
 		ShowMovieInfos.SetRate(ShowMovieInfos.Movies.size() - 1);
 
 		//Gatunek Movieu
-		System.out.print("Podaj Jaki to gatunek  Movieu: ");
+
 		ShowMovieInfos.SetCategory(ShowMovieInfos.Movies.size() - 1);
 
 
 	}
-
-
-
-
 }
