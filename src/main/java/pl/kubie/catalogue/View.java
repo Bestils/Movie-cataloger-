@@ -27,7 +27,7 @@ public class View {
 
 
     public  void  showMenu(){
-        //WYŚWIETLENIE POZYCJI MENU
+
         System.out.println("#############################################################");
         System.out.println("#                                                           #");
         System.out.println("#                        ***MENU***                         #");
@@ -66,17 +66,11 @@ public class View {
         System.out.println("Actual rating of movie: " ); movie.getRate();
         System.out.println("\n");
     }
-
-
-
     public int getUserNumber() {
-        System.out.println("Chose option and push ENTER");
         return sc.nextInt();
     }
     public String getUserChoice() {
-        System.out.println("Chose option and push ENTER");
         return sc.nextLine();
-
     }
 }
 

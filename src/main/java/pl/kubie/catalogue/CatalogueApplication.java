@@ -12,15 +12,13 @@ public class CatalogueApplication {
 
     public static void main(String[] args) {
 
-        //MENU
-        Integer wyborUzytkownika;
-        boolean poprawny;
-        int choice = view.getUserNumber();
+
+
+        int choice ;
         do {
             view.showMenu();
-            switch (choice) {
 
-
+            switch (view.getUserNumber()) {
                 case View.AD_MOVIE:
                     CreateNewMovie();
                     break;
@@ -30,12 +28,12 @@ public class CatalogueApplication {
                 case View.CHANGE_RATE: {
                     showAllMovies();
                     System.out.println("Chose movie to change it rating");
-                    mmovieService.returnRate(choice);
+                    movieService.setRate(view.getUserNumber());
                 }
                 case View.CHANGE_CATEGORY: {
                     movieDatabase.findall();
                     System.out.println("Chose movie to change it category");
-                    movieService.setCategory(choice);
+                    movieService.setCategory(view.getUserNumber());
                 }
                 break;
                 case View.SORT_MOVIES:
@@ -86,15 +84,16 @@ public class CatalogueApplication {
     }
 
     private static void CreateNewMovie() {
+
+        view.getUserChoice();
+        int id = movieDatabase.findall().size();
         System.out.println("Please, enter movie Title: ");
-        String title = view.getUserChoice();
+        String title  = view.getUserChoice();
         System.out.println("Please add comment to movie ");
         String comment = view.getUserChoice();
-        System.out.println("Please give rate to this movie");
-        int id = movieDatabase.findall().size();
+        Integer rate=movieService.returnRate();
         System.out.println("Please choose category of  this movie");
         movieService.showCategories();
-        Integer rate=movieService.returnRate();
         String category = movieService.returnCategory();
         Movie movie = new Movie(id,title,category,comment,rate);
         movieDatabase.save(movie);

@@ -65,6 +65,18 @@ public class MovieService {
             return 0;
         } while (wzóroceny.matcher(OcenaPobrana).matches());}
 
+    public void setRate(Integer index) {
+        Scanner sc = new Scanner(System.in);
+        Pattern wzóroceny = Pattern.compile("[0-9]?");
+        String OcenaPobrana;
+        do {
+            System.out.print("Give a rating [0-9]: ");
+            OcenaPobrana = sc.nextLine();
+            if (wzóroceny.matcher(OcenaPobrana).matches()) {
+                movieDatabase.findById(index).addRate(Integer.valueOf(OcenaPobrana));
+
+            }
+        } while (wzóroceny.matcher(OcenaPobrana).matches());}
 
 
 
@@ -80,7 +92,7 @@ public class MovieService {
         MovieCategorys.put(7, "Fantasy");
         MovieCategorys.put(8, "Kriminał");
         MovieCategorys.put(9, "Psychologiczny");
-        MovieCategorys.put(10, "Przygodowy");   
+        MovieCategorys.put(10, "Przygodowy");
         MovieCategorys.put(11, "Rodzinny");
 
       return MovieCategorys;
