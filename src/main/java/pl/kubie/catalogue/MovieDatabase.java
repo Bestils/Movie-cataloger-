@@ -16,7 +16,7 @@ public class MovieDatabase {
         movies.add(movie);
     }
 
-    public List<Movie> findall() {
+    public  List<Movie> findall() {
         return movies;
 
     }

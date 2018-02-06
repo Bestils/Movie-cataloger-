@@ -7,17 +7,18 @@ public class CatalogueApplication {
 
     static MovieDatabase movieDatabase = new MovieDatabase();
     static Scanner NumberScanner = new Scanner(System.in);
-    static View view = new View(NumberScanner,movieDatabase);
+    static View view = new View(NumberScanner, movieDatabase);
+    static MovieService movieService = new MovieService(movieDatabase);
 
     public static void main(String[] args) {
 
         //MENU
         Integer wyborUzytkownika;
         boolean poprawny;
+        int choice = view.getUserNumber();
         do {
             view.showMenu();
-
-            switch (view.getUserChoice()) {
+            switch (choice) {
 
 
                 case View.AD_MOVIE:
@@ -27,42 +28,23 @@ public class CatalogueApplication {
                     showAllMovies();
                     break;
                 case View.CHANGE_RATE: {
-                    view.ShowmovieDatabase(movieDatabase.findById(numerMovieu));
+                    showAllMovies();
                     System.out.println("Chose movie to change it rating");
-                    view.SetRate(NumberScanner.nextInt());
-
+                    mmovieService.returnRate(choice);
                 }
                 case View.CHANGE_CATEGORY: {
-
-                    view.ShowMovies();
+                    movieDatabase.findall();
                     System.out.println("Chose movie to change it category");
-                    view.SetCategory(NumberScanner.nextInt());
-
+                    movieService.setCategory(choice);
                 }
                 break;
                 case View.SORT_MOVIES:
                     showSortMenu();
 
-                break;
+                    break;
                 case View.AD_COMMENTARY: {
                     movieDatabase.findall();
                     System.out.println("Chose movie add Commentary");
-                    view.AddComment(NumberScanner.nextInt());
-                }
-                break;
-                case View.DELETE_MOVIE: {
-                    movieDatabase.findall();
-                    System.out.println("Chose movie to delete ");
-                    view.DeleteMovie(NumberScanner.nextInt());
-                }
-                break;
-                case View.CLOSE_PROGRAM{
-                    System.out.print("Program is closed ");
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
                     System.exit(0);
                 }
             }
@@ -72,38 +54,50 @@ public class CatalogueApplication {
 
     private static void showAllMovies() {
         boolean poprawny;
-        view.ShowmovieDatabase();
 
-        //WYBIERZ Movie Z LISTY
-        System.out.println("Chose number of movie whose you want and push ENTER");
-        Integer numerMovieu;
-        do {
-            numerMovieu = NumberScanner.nextInt();
-            if (numerMovieu >= 0 && numerMovieu <  movieDatabase.findById(numerMovieu).size()) {
-                poprawny = true;
-
-                //PRZEDSTAW Movie
-                view.showMovieInformations(MovieDatabase.find);
-            } else {
-                System.out.println("Bad  Movie number! Please give correct number");
-                poprawny = false;
+        if (movieDatabase.findall().size() > 0) {
+            view.ShowmovieDatabase(movieDatabase.findall());
+            System.out.println("Chose number of movie whose you want and push ENTER");
+            Integer movieNumber;
+            do {
+                movieNumber = NumberScanner.nextInt();
+                if (movieNumber >= 0 && movieNumber < movieDatabase.findall().size()) {
+                    poprawny = true;
+                    view.showMovieInformations(movieDatabase.findById(view.getUserNumber()));
+                } else {
+                    System.out.println("Bad  Movie number! Please give correct number");
+                    poprawny = false;
+                }
             }
+            while (!poprawny);
         }
-        while (!poprawny); //WALIDUJ WYBÓR}}
     }
 
     private static void showSortMenu() {
         System.out.println("#############################################################");
         System.out.println("#                                                           #");
-        System.out.println("#                 ***Search movie by:***                  #");
+        System.out.println("#                 ***Search movie by:***                    #");
         System.out.println("#                                                           #");
         System.out.println("#############################################################");
         System.out.println("[1] Title");
         System.out.println("[2] Category");
         System.out.println("[3] Rating");
+
     }
 
     private static void CreateNewMovie() {
+        System.out.println("Please, enter movie Title: ");
+        String title = view.getUserChoice();
+        System.out.println("Please add comment to movie ");
+        String comment = view.getUserChoice();
+        System.out.println("Please give rate to this movie");
+        int id = movieDatabase.findall().size();
+        System.out.println("Please choose category of  this movie");
+        movieService.showCategories();
+        Integer rate=movieService.returnRate();
+        String category = movieService.returnCategory();
+        Movie movie = new Movie(id,title,category,comment,rate);
+        movieDatabase.save(movie);
 
     }
 }

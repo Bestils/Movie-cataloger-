@@ -16,7 +16,7 @@ public class MovieService {
     private void createMovie() {
         System.out.println("#############################################################");
         System.out.println("#                                                           #");
-        System.out.println("#                   ***Adding Movieu***                   #");
+        System.out.println("#                   ***Adding Movie***                     #");
         System.out.println("#                                                           #");
         System.out.println("#############################################################");
 
@@ -51,28 +51,26 @@ public class MovieService {
         movieDatabase.findById(index).setComment(comment);
     }
 
-    public void SetRate(Integer indeksMovieu) {
+    public Integer returnRate() {
         Scanner sc = new Scanner(System.in);
         Pattern wzóroceny = Pattern.compile("[0-9]?");
         String OcenaPobrana;
         do {
             System.out.print("Give a rating [0-9]: ");
             OcenaPobrana = sc.nextLine();
-
             if (wzóroceny.matcher(OcenaPobrana).matches()) {
-                movieDatabase.get(indeksMovieu).setRate(Integer.valueOf(OcenaPobrana));
-            }
-        } while (movieDatabase.get(indeksMovieu).getRate() == null);
+                return Integer.valueOf(OcenaPobrana);
 
-    }
+        }else
+            return 0;
+        } while (wzóroceny.matcher(OcenaPobrana).matches());}
 
-    public void SetCategory(Integer MovieIndex) {
-        Scanner sc = new Scanner(System.in);
 
+
+
+    public Map<Integer, String>  getCategories() {
 
         Map<Integer, String> MovieCategorys = new HashMap<>();
-
-
         MovieCategorys.put(1, "Dramat");
         MovieCategorys.put(2, "Komedia");
         MovieCategorys.put(3, "Romans");
@@ -82,19 +80,37 @@ public class MovieService {
         MovieCategorys.put(7, "Fantasy");
         MovieCategorys.put(8, "Kriminał");
         MovieCategorys.put(9, "Psychologiczny");
-        MovieCategorys.put(10, "Przygodowy");
+        MovieCategorys.put(10, "Przygodowy");   
         MovieCategorys.put(11, "Rodzinny");
 
-        System.out.println("Chose number with category of movie");
-        for (Map.Entry<Integer, String> entry : MovieCategorys.entrySet()) {
+      return MovieCategorys;
+
+    }
+
+    public void showCategories(){
+        Map<Integer, String> categories=getCategories();
+        for (Map.Entry<Integer, String> entry : categories.entrySet()) {
             Integer key = entry.getKey();
             String value = entry.getValue();
             System.out.println(key + ": " + value);
         }
-        Integer Gatunek = sc.nextInt();
+    }
+    public void setCategory(Integer movieIndex){
+        Map<Integer, String> categories=getCategories();
 
-        movieDatabase.get(MovieIndex).setType(MovieCategorys.get(Gatunek));
+        Scanner sc = new Scanner(System.in);
+        Integer Gatunek = sc.nextInt();
+        System.out.println("Chose number with category of movie");
+        movieDatabase.findById(movieIndex).setType(categories.get(Gatunek));
 
     }
+    public String returnCategory(){
+        Map<Integer, String> categories=getCategories();
 
+        Scanner sc = new Scanner(System.in);
+        Integer Gatunek = sc.nextInt();
+        System.out.println("Chose number with category of movie");
+        return categories.get(Gatunek);
+
+    }
 }

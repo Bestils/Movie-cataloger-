@@ -25,10 +25,6 @@ public class View {
         this.movieDatabase = movieDatabase;
     }
 
-    public void AddMovieToCollection(Movie ExampleMovie) {
-        movieDatabase.save(ExampleMovie);
-        System.out.println("Movie  added" + "\n");
-    }
 
     public  void  showMenu(){
         //WYŚWIETLENIE POZYCJI MENU
@@ -51,7 +47,6 @@ public class View {
     }
 
 
-
     public void ShowmovieDatabase(List<Movie> movies) {
         System.out.println("#############################################################");
         System.out.println("#                                                           #");
@@ -68,15 +63,20 @@ public class View {
     public void showMovieInformations(Movie movie) {
         System.out.println("Title: " + movie.getTitle());
         System.out.println("Category : " + movie.getType());
-        System.out.println("Actual rating of movie: " + movie.getRate());
+        System.out.println("Actual rating of movie: " ); movie.getRate();
         System.out.println("\n");
     }
 
 
 
-    public int getUserChoice() {
+    public int getUserNumber() {
         System.out.println("Chose option and push ENTER");
         return sc.nextInt();
+    }
+    public String getUserChoice() {
+        System.out.println("Chose option and push ENTER");
+        return sc.nextLine();
+
     }
 }
 
