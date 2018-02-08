@@ -20,6 +20,9 @@ public class View {
 
     private Scanner sc;
     private MovieDatabase movieDatabase = new MovieDatabase();
+    public View() {
+
+    }
 
     public View(Scanner sc, MovieDatabase movieDatabase) {
         this.sc = sc;

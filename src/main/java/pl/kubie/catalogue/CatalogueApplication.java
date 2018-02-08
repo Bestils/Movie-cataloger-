@@ -88,13 +88,13 @@ public class CatalogueApplication {
         System.out.println("[4] Date");
         int numberChoice = view.getUserNumber();
         if (numberChoice == 1)
-            comperator.sortByTitle();
+            movieDatabase.findAllSortByTitle();
         else if (numberChoice == 2)
-            comperator.sortByCategory();
+            movieDatabase.findAllSortByCategory();
         else if (numberChoice == 3)
-            comperator.sortByRate();
+            movieDatabase.findAllSortByRate();
         else if (numberChoice == 4)
-            comperator.sortByDate();
+             movieDatabase.findAllSortByDate();
         else {
             System.out.println("Wrong number !");
         }

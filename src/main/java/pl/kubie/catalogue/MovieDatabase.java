@@ -1,6 +1,8 @@
 package pl.kubie.catalogue;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -16,20 +18,72 @@ public class MovieDatabase {
         movies.add(movie);
     }
 
-    public  List<Movie> findall() {
+    public List<Movie> findall() {
         return movies;
 
     }
-    public  void  remove(Integer index){
+
+    public void remove(Integer index) {
 
         movies.remove(index);
     }
-  public Movie findById(int id){
+
+    public Movie findById(int id) {
         return movies.stream()
-                .filter(f ->f.getId()==id)
+                .filter(f -> f.getId() == id)
                 .findAny()
                 .orElseThrow(NoSuchElementException::new);
 
-  }}
+    }
+
+    public Movie findByTitle(String title) {
+        return movies.stream()
+                .filter(f -> f.getTitle() == title)
+                .findAny()
+                .orElseThrow(NoSuchElementException::new);
+
+    }
+
+    public Movie findByType(String type) {
+        return movies.stream()
+                .filter(f -> f.getTitle() == type)
+                .findAny()
+                .orElseThrow(NoSuchElementException::new);
+
+    }
+
+    public Movie findByAverageRate(int rate1, int rate2) {
+        return movies.stream()
+                .filter(f -> (f.getAverageRate() < rate2) && (f.getAverageRate() > rate1))
+                .findAny()
+                .orElseThrow(NoSuchElementException::new);
+
+    }
+
+    public Movie findByDate(LocalDate date) {
+        return movies.stream()
+                .filter(f -> f.getDate() == date)
+                .findAny()
+                .orElseThrow(NoSuchElementException::new);
+
+    }
+
+    public void findAllSortByTitle() {
+        movies.stream().sorted(Comparator.comparing(Movie::getTitle).reversed()).forEach(System.out::println);
+    }
+
+    public void  findAllSortByRate() {
+        movies.stream().sorted(Comparator.comparing(Movie::getAverageRate).reversed()).forEach(System.out::println);
+    }
+
+    public void  findAllSortByDate() {
+        movies.stream().sorted(Comparator.comparing(Movie::getDate).reversed()).forEach(System.out::println);
+    }
+    public void  findAllSortByCategory() {
+        movies.stream().sorted(Comparator.comparing(Movie::getType).reversed()).forEach(System.out::println);
+    }
+
+
+}
 
 

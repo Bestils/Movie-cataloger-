@@ -1,5 +1,6 @@
 package pl.kubie.catalogue;
 
+import java.time.LocalDate;
 import java.util.*;
 
 /**
@@ -9,7 +10,7 @@ public class Movie {
     private int id;
     private String title;
     private String type;
-
+    private LocalDate dateOfAdd;
     private List<Integer> rate = new ArrayList<>();
     private List<String> comment = new ArrayList<>();
 
@@ -19,6 +20,7 @@ public class Movie {
         this.type = type;
         this.comment.add(comment);
         this.rate.add(rate);
+        this.dateOfAdd = LocalDate.now();
     }
 
     public int getId() {
@@ -43,7 +45,12 @@ public class Movie {
             String coord = myListIterator.next();
             System.out.print("\r");
             System.out.print(coord);
+
         }
+    }
+
+    public LocalDate getDate() {
+        return dateOfAdd;
     }
 
     public void getRate() {
@@ -80,6 +87,11 @@ public class Movie {
 
     public void addRate(Integer rate) {
         this.rate.add(rate);
+    }
+
+
+    public void setDateOfAdd(LocalDate dateOfAdd) {
+        this.dateOfAdd = dateOfAdd;
     }
 }
 
