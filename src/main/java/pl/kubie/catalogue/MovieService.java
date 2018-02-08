@@ -22,7 +22,6 @@ public class MovieService {
 
         Scanner sc = new Scanner(System.in);
 
-
         System.out.println("title");
         String movieTitle = sc.nextLine();
         System.out.println("type");

@@ -9,12 +9,12 @@ public class CatalogueApplication {
     static Scanner NumberScanner = new Scanner(System.in);
     static View view = new View(NumberScanner, movieDatabase);
     static MovieService movieService = new MovieService(movieDatabase);
+    static Comperat comperator = new Comperat();
 
     public static void main(String[] args) {
 
 
-
-        int choice ;
+        int choice;
         do {
             view.showMenu();
 
@@ -39,7 +39,12 @@ public class CatalogueApplication {
                 case View.SORT_MOVIES:
                     showSortMenu();
 
+
                     break;
+                case View.SEARCH_MOVIE: {
+
+                }
+                break;
                 case View.AD_COMMENTARY: {
                     movieDatabase.findall();
                     System.out.println("Chose movie add Commentary");
@@ -74,13 +79,25 @@ public class CatalogueApplication {
     private static void showSortMenu() {
         System.out.println("#############################################################");
         System.out.println("#                                                           #");
-        System.out.println("#                 ***Search movie by:***                    #");
+        System.out.println("#                 ***Sort movie by:***                      #");
         System.out.println("#                                                           #");
         System.out.println("#############################################################");
         System.out.println("[1] Title");
         System.out.println("[2] Category");
         System.out.println("[3] Rating");
-
+        System.out.println("[4] Date");
+        int numberChoice = view.getUserNumber();
+        if (numberChoice == 1)
+            comperator.sortByTitle();
+        else if (numberChoice == 2)
+            comperator.sortByCategory();
+        else if (numberChoice == 3)
+            comperator.sortByRate();
+        else if (numberChoice == 4)
+            comperator.sortByDate();
+        else {
+            System.out.println("Wrong number !");
+        }
     }
 
     private static void CreateNewMovie() {
@@ -88,14 +105,14 @@ public class CatalogueApplication {
         view.getUserChoice();
         int id = movieDatabase.findall().size();
         System.out.println("Please, enter movie Title: ");
-        String title  = view.getUserChoice();
+        String title = view.getUserChoice();
         System.out.println("Please add comment to movie ");
         String comment = view.getUserChoice();
-        Integer rate=movieService.returnRate();
+        Integer rate = movieService.returnRate();
         System.out.println("Please choose category of  this movie");
         movieService.showCategories();
         String category = movieService.returnCategory();
-        Movie movie = new Movie(id,title,category,comment,rate);
+        Movie movie = new Movie(id, title, category, comment, rate);
         movieDatabase.save(movie);
 
     }

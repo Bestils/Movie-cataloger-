@@ -13,9 +13,10 @@ public class View {
     public static final int CHANGE_RATE=3;
     public static final int CHANGE_CATEGORY=4;
     public static final int SORT_MOVIES=5;
-    public static final int AD_COMMENTARY=6;
-    public static final int DELETE_MOVIE=7;
-    public static final int CLOSE_PROGRAM=8;
+    public static final int SEARCH_MOVIE=6;
+    public static final int AD_COMMENTARY=7;
+    public static final int DELETE_MOVIE=8;
+    public static final int CLOSE_PROGRAM=9;
 
     private Scanner sc;
     private MovieDatabase movieDatabase = new MovieDatabase();
@@ -38,6 +39,7 @@ public class View {
         System.out.println("["+CHANGE_RATE+" ]Movie Rate");
         System.out.println("["+CHANGE_CATEGORY +"] Change Movie Category ");
         System.out.println("["+SORT_MOVIES+"] Sort Movies By //niedziała");
+        System.out.println("["+SEARCH_MOVIE+"] Search Movies By //niedziała");
         System.out.println("["+AD_COMMENTARY+"] Add Commentary to Movie");
         System.out.println("["+DELETE_MOVIE+"] Delete Movie  ");
         System.out.println("["+CLOSE_PROGRAM+"] Close Program" + "\n");

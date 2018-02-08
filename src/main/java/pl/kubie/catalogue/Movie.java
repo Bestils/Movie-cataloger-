@@ -13,9 +13,6 @@ public class Movie {
     private List<Integer> rate = new ArrayList<>();
     private List<String> comment = new ArrayList<>();
 
-
-    public Movie(){};
-
     public Movie(int id, String title, String type, String comment, Integer rate) {
         this.id = id;
         this.title = title;
@@ -46,7 +43,8 @@ public class Movie {
             String coord = myListIterator.next();
             System.out.print("\r");
             System.out.print(coord);
-        }}
+        }
+    }
 
     public void getRate() {
         Iterator<Integer> myListIterator = rate.iterator();
@@ -55,6 +53,17 @@ public class Movie {
             System.out.print("\r");
             System.out.print(coord);
         }
+    }
+
+    public double getAverageRate() {
+        Integer sum = 0;
+        if (!rate.isEmpty()) {
+            for (Integer mark : rate) {
+                sum += mark;
+            }
+            return sum.doubleValue() / rate.size();
+        }
+        return sum;
     }
 
     public void setTitle(String title) {
@@ -73,5 +82,6 @@ public class Movie {
         this.rate.add(rate);
     }
 }
+
 
 
