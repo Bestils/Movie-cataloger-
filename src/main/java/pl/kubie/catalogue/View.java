@@ -66,7 +66,7 @@ public class View {
         }
     }
 
-    public void showMovieInformations(Movie movie) {
+    public static void showMovieInformations(Movie movie) {
         System.out.println("Title: " + movie.getTitle());
         System.out.println("Category : " + movie.getType());
         System.out.println("Actual rating of movie: " ); movie.getRate();

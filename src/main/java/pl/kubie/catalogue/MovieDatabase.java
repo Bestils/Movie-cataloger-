@@ -71,18 +71,18 @@ public class MovieDatabase {
 
 
     public void findAllSortByTitle() {
-        movies.stream().sorted(Comparator.comparing(Movie::getTitle).reversed()).forEach(System.out::println);
+        movies.stream().sorted(Comparator.comparing(Movie::getTitle).reversed()).forEach(View::showMovieInformations);
     }
 
     public void  findAllSortByRate() {
-        movies.stream().sorted(Comparator.comparing(Movie::getAverageRate).reversed()).forEach(System.out::println);
+        movies.stream().sorted(Comparator.comparing(Movie::getAverageRate).reversed()).forEach(View::showMovieInformations);
     }
 
     public void  findAllSortByDate() {
-        movies.stream().sorted(Comparator.comparing(Movie::getDate).reversed()).forEach(System.out::println);
+        movies.stream().sorted(Comparator.comparing(Movie::getDate).reversed()).forEach(View::showMovieInformations);
     }
     public void  findAllSortByCategory() {
-        movies.stream().sorted(Comparator.comparing(Movie::getType).reversed()).forEach(System.out::println);
+        movies.stream().sorted(Comparator.comparing(Movie::getType).reversed()).forEach(View::showMovieInformations);
     }
 
 
