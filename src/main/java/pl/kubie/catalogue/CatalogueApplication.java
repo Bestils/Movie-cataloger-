@@ -99,13 +99,13 @@ public class CatalogueApplication {
         System.out.println("[4] Date");
         int numberChoice = view.getUserNumber();
         if (numberChoice == 1)
-            view.showMovieInformations(movieDatabase.findAllSortByTitle());
+            view.ShowmovieDatabase(movieDatabase.findAllSortByTitle());
         else if (numberChoice == 2)
-            movieDatabase.findAllSortByCategory();
+            view.ShowmovieDatabase(movieDatabase.findAllSortByCategory());
         else if (numberChoice == 3)
-            movieDatabase.findAllSortByRate();
+            view.ShowmovieDatabase(movieDatabase.findAllSortByRate());
         else if (numberChoice == 4)
-             movieDatabase.findAllSortByDate();
+            view.ShowmovieDatabase(movieDatabase.findAllSortByDate());
         else {
             System.out.println("Wrong number !");
         }
