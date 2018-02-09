@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Created by Gladus on 04.02.2018.
@@ -70,19 +72,20 @@ public class MovieDatabase {
 
 
 
-    public void findAllSortByTitle() {
-        movies.stream().sorted(Comparator.comparing(Movie::getTitle).reversed()).forEach(View::showMovieInformations);
+    public List<Movie> findAllSortByTitle() {
+
+       return  movies.stream().sorted(Comparator.comparing(Movie::getTitle).reversed()).collect(Collectors.toList());
     }
 
-    public void  findAllSortByRate() {
-        movies.stream().sorted(Comparator.comparing(Movie::getAverageRate).reversed()).forEach(View::showMovieInformations);
+    public List<Movie>  findAllSortByRate() {
+        return movies.stream().sorted(Comparator.comparing(Movie::getAverageRate).reversed()).collect(Collectors.toList());
     }
 
-    public void  findAllSortByDate() {
-        movies.stream().sorted(Comparator.comparing(Movie::getDate).reversed()).forEach(View::showMovieInformations);
+    public List<Movie>  findAllSortByDate() {
+        return  movies.stream().sorted(Comparator.comparing(Movie::getDate).reversed()).collect(Collectors.toList());
     }
-    public void  findAllSortByCategory() {
-        movies.stream().sorted(Comparator.comparing(Movie::getType).reversed()).forEach(View::showMovieInformations);
+    public List<Movie>  findAllSortByCategory() {
+        return movies.stream().sorted(Comparator.comparing(Movie::getType).reversed()).collect(Collectors.toList());
     }
 
 

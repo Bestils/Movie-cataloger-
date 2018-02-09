@@ -11,7 +11,7 @@ public class CatalogueApplication {
     static View view = new View(NumberScanner, movieDatabase);
     static MovieService movieService = new MovieService(movieDatabase);
     static Comperat comperator = new Comperat();
-    static Searcher searcher = new Searcher();
+    static Searcher searcher = new Searcher(movieDatabase);
 
     public static void main(String[] args) {
         insertSampleData();
@@ -99,7 +99,7 @@ public class CatalogueApplication {
         System.out.println("[4] Date");
         int numberChoice = view.getUserNumber();
         if (numberChoice == 1)
-            movieDatabase.findAllSortByTitle();
+            view.showMovieInformations(movieDatabase.findAllSortByTitle());
         else if (numberChoice == 2)
             movieDatabase.findAllSortByCategory();
         else if (numberChoice == 3)
