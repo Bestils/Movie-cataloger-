@@ -10,8 +10,11 @@ import java.util.List;
  */
 public class Searcher {
 
-    static MovieDatabase movieDatabase= new MovieDatabase();
+    static MovieDatabase movieDatabase;
     static MovieService movieService= new MovieService(movieDatabase);
+    Searcher(MovieDatabase movieDatabase){
+        this.movieDatabase=movieDatabase;
+    }
 static View view = new View();
     public static void search() {
         int numberChoice = view.getUserNumber("Do you want to search by title (1), rate (2), type(3) or date(4).");
