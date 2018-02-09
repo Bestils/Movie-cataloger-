@@ -85,6 +85,18 @@ public class Movie {
         this.comment.add(comment);
     }
 
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", type='" + type + '\'' +
+                ", dateOfAdd=" + dateOfAdd +
+                ", rate=" + rate +
+                ", comment=" + comment +
+                '}';
+    }
+
     public void addRate(Integer rate) {
         this.rate.add(rate);
     }
@@ -93,6 +105,7 @@ public class Movie {
     public void setDateOfAdd(LocalDate dateOfAdd) {
         this.dateOfAdd = dateOfAdd;
     }
+
 }
 
 

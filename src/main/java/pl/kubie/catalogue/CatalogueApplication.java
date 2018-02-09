@@ -1,5 +1,6 @@
 package pl.kubie.catalogue;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 
@@ -10,9 +11,10 @@ public class CatalogueApplication {
     static View view = new View(NumberScanner, movieDatabase);
     static MovieService movieService = new MovieService(movieDatabase);
     static Comperat comperator = new Comperat();
+    static Searcher searcher = new Searcher();
 
     public static void main(String[] args) {
-
+        insertSampleData();
 
         int choice;
         do {
@@ -21,33 +23,42 @@ public class CatalogueApplication {
             switch (view.getUserNumber()) {
                 case View.AD_MOVIE:
                     CreateNewMovie();
+
                     break;
                 case View.SHOW_MOVIES:
                     showAllMovies();
                     break;
                 case View.CHANGE_RATE: {
                     showAllMovies();
-                    System.out.println("Chose movie to change it rating");
-                    movieService.setRate(view.getUserNumber());
-                }
+                    int numberChoice = view.getUserNumber("Chose movie to change it rating");
+                    movieService.setRate(numberChoice);
+                }break;
                 case View.CHANGE_CATEGORY: {
-                    movieDatabase.findall();
-                    System.out.println("Chose movie to change it category");
-                    movieService.setCategory(view.getUserNumber());
+                    showAllMovies();
+                    int numberChoice =view.getUserNumber("Chose movie to change it category");
+                    movieService.setCategory(  numberChoice );
                 }
                 break;
                 case View.SORT_MOVIES:
                     showSortMenu();
 
-
                     break;
                 case View.SEARCH_MOVIE: {
+                    searcher.search();
+                }
 
+                break;  case View.DELETE_MOVIE: {
+                    showAllMovies();
+                    int numberChoice = view.getUserNumber("Chose movie to change it category");
+                    movieService.DeleteMovie(numberChoice);
                 }
                 break;
                 case View.AD_COMMENTARY: {
-                    movieDatabase.findall();
-                    System.out.println("Chose movie add Commentary");
+                    showAllMovies();
+                    int numberChoice = view.getUserNumber("Chose movie add Commentary");
+                    movieService.AddComment( numberChoice );
+                }  break;
+                case View.CLOSE_PROGRAM: {
                     System.exit(0);
                 }
             }
@@ -66,7 +77,7 @@ public class CatalogueApplication {
                 movieNumber = NumberScanner.nextInt();
                 if (movieNumber >= 0 && movieNumber < movieDatabase.findall().size()) {
                     poprawny = true;
-                    view.showMovieInformations(movieDatabase.findById(view.getUserNumber()));
+                    view.showMovieInformations(movieDatabase.findById(movieNumber));
                 } else {
                     System.out.println("Bad  Movie number! Please give correct number");
                     poprawny = false;
@@ -116,4 +127,13 @@ public class CatalogueApplication {
         movieDatabase.save(movie);
 
     }
-}
+   static private void insertSampleData() {
+        Arrays.asList(
+                 new Movie(1, "Interstellar", "Sci-Fi", "Best Movie Ever!", 10),
+                new Movie(2, "Incepcja", "Sci-Fi", "When dreams comes true ", 9),
+                new Movie(3, "Ojciec chrzestny ", "Kryminał", "", 7),
+                new Movie(4, "Shape of Water", "Fantasy", "Simple Movie for evening", 7),
+                new Movie(4, "Efekt Motyla", "Sci-Fi", "Simple Movie for evening", 10)
+        )
+                .forEach(movieDatabase::save);
+}}

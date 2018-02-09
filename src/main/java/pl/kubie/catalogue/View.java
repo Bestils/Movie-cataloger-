@@ -1,5 +1,6 @@
 package pl.kubie.catalogue;
 
+import java.time.LocalDate;
 import java.util.*;
 import java.util.regex.Pattern;
 
@@ -71,12 +72,27 @@ public class View {
         System.out.println("Actual rating of movie: " ); movie.getRate();
         System.out.println("\n");
     }
+    public int getUserNumber(String message) {
+        System.out.println(message);
+        return sc.nextInt();
+    }
+    public String getUserChoice(String message) {
+        System.out.println(message);
+        return sc.nextLine();
+    }
     public int getUserNumber() {
+
         return sc.nextInt();
     }
     public String getUserChoice() {
+
         return sc.nextLine();
     }
+
+    public LocalDate dateToFind() {
+        return LocalDate.parse(getUserChoice("Enter date (format: yyyy-MM-dd):"));
+    }
+
 }
 
 

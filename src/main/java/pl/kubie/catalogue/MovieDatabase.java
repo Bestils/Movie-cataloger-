@@ -38,7 +38,7 @@ public class MovieDatabase {
 
     public Movie findByTitle(String title) {
         return movies.stream()
-                .filter(f -> f.getTitle() == title)
+                .filter(f -> f.getTitle().equals(title))
                 .findAny()
                 .orElseThrow(NoSuchElementException::new);
 
@@ -46,7 +46,7 @@ public class MovieDatabase {
 
     public Movie findByType(String type) {
         return movies.stream()
-                .filter(f -> f.getTitle() == type)
+                .filter(f -> f.getTitle().equals(type))
                 .findAny()
                 .orElseThrow(NoSuchElementException::new);
 
@@ -54,7 +54,7 @@ public class MovieDatabase {
 
     public Movie findByAverageRate(int rate1, int rate2) {
         return movies.stream()
-                .filter(f -> (f.getAverageRate() < rate2) && (f.getAverageRate() > rate1))
+                .filter(f -> (f.getAverageRate() <= rate2) && (f.getAverageRate() >= rate1))
                 .findAny()
                 .orElseThrow(NoSuchElementException::new);
 
@@ -62,11 +62,13 @@ public class MovieDatabase {
 
     public Movie findByDate(LocalDate date) {
         return movies.stream()
-                .filter(f -> f.getDate() == date)
+                .filter(f -> f.getDate().equals(date))
                 .findAny()
                 .orElseThrow(NoSuchElementException::new);
 
     }
+
+
 
     public void findAllSortByTitle() {
         movies.stream().sorted(Comparator.comparing(Movie::getTitle).reversed()).forEach(System.out::println);
