@@ -16,13 +16,15 @@ public class Searcher {
         this.movieDatabase=movieDatabase;
     }
 static View view = new View();
-    public static void search() {
-        int numberChoice = view.getUserNumber("Do you want to search by title (1), rate (2), type(3) or date(4).");
-        if (numberChoice == 1) {
 
+    public static void search() {
+
+        int numberChoice = view.getUserNumber("Do you want to search by title (1), rate (2), type(3) or date(4).");
+        switch (numberChoice){
+            case 1:{
             String titleToSearch = view.getUserChoice(( "You are searching by title, input text:"));
             System.out.println( movieDatabase.findByTitle(titleToSearch));
-        } else if (numberChoice == 2) {
+        } case 2:{
             System.out.println( "You are searching by rate");
             int smalerRate = view.getUserNumber("First please input smaller number");
             int bigerRate = view.getUserNumber("Now input bigger number");
@@ -33,17 +35,17 @@ static View view = new View();
             }
             System.out.println(movieDatabase.findByAverageRate(smalerRate,bigerRate));
 
-        } else if (numberChoice == 3) {
+        }  case 3: {
             movieService.getCategories();
             String titleToSearch = view.getUserChoice( "You are searching by type, chose your type:");
-//pobrać porównać wypisać pasujące
+            System.out.println(movieDatabase.findByType(movieService.returnCategory()));
         }
-        else if (numberChoice == 4) {
-//Dorobić opcje wyszukującą
-
-        } else {
+        case 4: {
+         movieDatabase.findByDate(view.returnDate());
+         break;
+        }default : {
             System.out.println("Bad chose");
         }
 
     }
-}
+}}

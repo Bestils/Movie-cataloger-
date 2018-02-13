@@ -74,7 +74,7 @@ public class View {
     }
     public int getUserNumber(String message) {
         System.out.println(message);
-        return sc.nextInt();
+        return Integer.parseInt(sc.nextLine());
     }
     public String getUserChoice(String message) {
         System.out.println(message);
@@ -87,6 +87,14 @@ public class View {
     public String getUserChoice() {
 
         return sc.nextLine();
+    }
+
+    public LocalDate returnDate() {
+        int year =  getUserNumber("Type in year");
+        int month =   getUserNumber("Type in month");
+        int day =   getUserNumber("Type in day");
+        LocalDate date = LocalDate.of(year, month, day);
+        return date;
     }
 
     public LocalDate dateToFind() {

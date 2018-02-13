@@ -10,7 +10,6 @@ public class CatalogueApplication {
     static Scanner NumberScanner = new Scanner(System.in);
     static View view = new View(NumberScanner, movieDatabase);
     static MovieService movieService = new MovieService(movieDatabase);
-    static Comperat comperator = new Comperat();
     static Searcher searcher = new Searcher(movieDatabase);
 
     public static void main(String[] args) {
