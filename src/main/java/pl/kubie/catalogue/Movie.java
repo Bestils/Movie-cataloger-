@@ -81,9 +81,7 @@ public class Movie {
         this.type = type;
     }
 
-    public void setComment(String comment) {
-        this.comment.add(comment);
-    }
+
 
     @Override
     public String toString() {
@@ -96,7 +94,9 @@ public class Movie {
                 ", comment=" + comment +
                 '}';
     }
-
+    public void setComment(String comment) {
+        this.comment.add(comment);
+    }
     public void addRate(Integer rate) {
         this.rate.add(rate);
     }

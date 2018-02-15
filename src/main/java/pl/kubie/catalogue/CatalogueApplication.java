@@ -9,13 +9,11 @@ public class CatalogueApplication {
     static MovieDatabase movieDatabase = new MovieDatabase();
     static Scanner NumberScanner = new Scanner(System.in);
     static View view = new View(NumberScanner, movieDatabase);
-    static MovieService movieService = new MovieService(movieDatabase);
-    static Searcher searcher = new Searcher(movieDatabase);
+    static MovieService movieService = new MovieService(movieDatabase,view);
+
 
     public static void main(String[] args) {
         insertSampleData();
-
-        int choice;
         do {
             view.showMenu();
 
@@ -28,14 +26,15 @@ public class CatalogueApplication {
                     showAllMovies();
                     break;
                 case View.CHANGE_RATE: {
-                    showAllMovies();
+                    view.ShowMovieDatabase(movieDatabase.findall());
                     int numberChoice = view.getUserNumber("Chose movie to change it rating");
                     movieService.setRate(numberChoice);
-                }break;
+                }
+                break;
                 case View.CHANGE_CATEGORY: {
-                    showAllMovies();
-                    int numberChoice =view.getUserNumber("Chose movie to change it category");
-                    movieService.setCategory(  numberChoice );
+                    view.ShowMovieDatabase(movieDatabase.findall());
+                    int numberChoice = view.getUserNumber("Chose movie to change it category");
+                    movieService.setCategory(numberChoice);
                 }
                 break;
                 case View.SORT_MOVIES:
@@ -43,25 +42,32 @@ public class CatalogueApplication {
 
                     break;
                 case View.SEARCH_MOVIE: {
-                    searcher.search();
+                    movieService.search();
                 }
 
-                break;  case View.DELETE_MOVIE: {
-                    showAllMovies();
+                break;
+                case View.DELETE_MOVIE: {
+                    view.ShowMovieDatabase(movieDatabase.findall());
                     int numberChoice = view.getUserNumber("Chose movie to change it category");
                     movieService.DeleteMovie(numberChoice);
                 }
                 break;
-                case View.AD_COMMENTARY: {
-                    showAllMovies();
+                case View.AD_COMMENT: {
+                    view.ShowMovieDatabase(movieDatabase.findall());
                     int numberChoice = view.getUserNumber("Chose movie add Commentary");
-                    movieService.AddComment( numberChoice );
-                }  break;
+                    movieService.AddComment(numberChoice);
+                }
+                break;
+                case View.SHOW_COMMENTS:{
+                    view.ShowMovieDatabase(movieDatabase.findall());
+                    int numberChoice = view.getUserNumber("Chose movie to show comments");
+                    movieService.showComments(numberChoice);
+                }
+                break;
                 case View.CLOSE_PROGRAM: {
                     System.exit(0);
                 }
             }
-
         } while (true);
     }
 
@@ -69,7 +75,7 @@ public class CatalogueApplication {
         boolean poprawny;
 
         if (movieDatabase.findall().size() > 0) {
-            view.ShowmovieDatabase(movieDatabase.findall());
+            view.ShowMovieDatabase(movieDatabase.findall());
             System.out.println("Chose number of movie whose you want and push ENTER");
             Integer movieNumber;
             do {
@@ -98,41 +104,39 @@ public class CatalogueApplication {
         System.out.println("[4] Date");
         int numberChoice = view.getUserNumber();
         if (numberChoice == 1)
-            view.ShowmovieDatabase(movieDatabase.findAllSortByTitle());
+            view.ShowMovieDatabase(movieDatabase.findAllSortByTitle());
         else if (numberChoice == 2)
-            view.ShowmovieDatabase(movieDatabase.findAllSortByCategory());
+            view.ShowMovieDatabase(movieDatabase.findAllSortByCategory());
         else if (numberChoice == 3)
-            view.ShowmovieDatabase(movieDatabase.findAllSortByRate());
+            view.ShowMovieDatabase(movieDatabase.findAllSortByRate());
         else if (numberChoice == 4)
-            view.ShowmovieDatabase(movieDatabase.findAllSortByDate());
+            view.ShowMovieDatabase(movieDatabase.findAllSortByDate());
         else {
             System.out.println("Wrong number !");
         }
     }
 
     private static void CreateNewMovie() {
-
-        view.getUserChoice();
+        view.getUserChoice(); //prevents you from skipping the next item
         int id = movieDatabase.findall().size();
-        System.out.println("Please, enter movie Title: ");
-        String title = view.getUserChoice();
-        System.out.println("Please add comment to movie ");
-        String comment = view.getUserChoice();
+        String title = view.getUserChoice("Please, enter movie Title: ");
+        String comment = view.getUserChoice("Please add comment to movie ");
         Integer rate = movieService.returnRate();
         System.out.println("Please choose category of  this movie");
         movieService.showCategories();
         String category = movieService.returnCategory();
         Movie movie = new Movie(id, title, category, comment, rate);
         movieDatabase.save(movie);
-
     }
-   static private void insertSampleData() {
+
+    static private void insertSampleData() {
         Arrays.asList(
-                 new Movie(1, "Interstellar", "Sci-Fi", "Best Movie Ever!", 10),
+                new Movie(1, "Interstellar", "Sci-Fi", "Best Movie Ever!", 10),
                 new Movie(2, "Incepcja", "Sci-Fi", "When dreams comes true ", 9),
                 new Movie(3, "Ojciec chrzestny ", "Kryminał", "", 7),
                 new Movie(4, "Shape of Water", "Fantasy", "Simple Movie for evening", 7),
                 new Movie(4, "Efekt Motyla", "Sci-Fi", "Simple Movie for evening", 10)
         )
                 .forEach(movieDatabase::save);
-}}
+    }
+}

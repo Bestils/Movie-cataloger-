@@ -2,7 +2,6 @@ package pl.kubie.catalogue;
 
 import java.time.LocalDate;
 import java.util.*;
-import java.util.regex.Pattern;
 
 /**
  * Created by Gladus on 02.02.2018.
@@ -15,9 +14,10 @@ public class View {
     public static final int CHANGE_CATEGORY=4;
     public static final int SORT_MOVIES=5;
     public static final int SEARCH_MOVIE=6;
-    public static final int AD_COMMENTARY=7;
-    public static final int DELETE_MOVIE=8;
-    public static final int CLOSE_PROGRAM=9;
+    public static final int AD_COMMENT =7;
+    public static final int SHOW_COMMENTS =8;
+    public static final int DELETE_MOVIE=9;
+    public static final int CLOSE_PROGRAM=10;
 
     private Scanner sc;
     private MovieDatabase movieDatabase = new MovieDatabase();
@@ -42,9 +42,10 @@ public class View {
         System.out.println("["+ SHOW_MOVIES+"] Show all  Movies");
         System.out.println("["+CHANGE_RATE+" ]Movie Rate");
         System.out.println("["+CHANGE_CATEGORY +"] Change Movie Category ");
-        System.out.println("["+SORT_MOVIES+"] Sort Movies By //niedziała");
+        System.out.println("["+SORT_MOVIES+"] Sort Movies By ");
         System.out.println("["+SEARCH_MOVIE+"] Search Movies By //niedziała");
-        System.out.println("["+AD_COMMENTARY+"] Add Commentary to Movie");
+        System.out.println("["+ AD_COMMENT +"] Add Commentary to Movie");
+        System.out.println("["+SHOW_COMMENTS+"] Show movies comments");
         System.out.println("["+DELETE_MOVIE+"] Delete Movie  ");
         System.out.println("["+CLOSE_PROGRAM+"] Close Program" + "\n");
 
@@ -52,8 +53,11 @@ public class View {
 
     }
 
+public void showAllComents(){
 
-    public void ShowmovieDatabase(List<Movie> movies) {
+}
+
+    public void ShowMovieDatabase(List<Movie> movies) {
         System.out.println("#############################################################");
         System.out.println("#                                                           #");
         System.out.println("#                     *** Movie List***                    #");
@@ -74,7 +78,7 @@ public class View {
     }
     public int getUserNumber(String message) {
         System.out.println(message);
-        return Integer.parseInt(sc.nextLine());
+        return  sc.nextInt();
     }
     public String getUserChoice(String message) {
         System.out.println(message);
