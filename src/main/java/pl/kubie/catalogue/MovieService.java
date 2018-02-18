@@ -2,7 +2,6 @@ package pl.kubie.catalogue;
 import java.util.*;
 import java.util.regex.Pattern;
 
-
 public class MovieService {
     private MovieDatabase movieDatabase;
     private View view;
@@ -11,7 +10,6 @@ public class MovieService {
         this.movieDatabase = movieDatabase;
         this.view=view;
     }
-
     private void createMovie() {
         System.out.println("#############################################################");
         System.out.println("#                                                           #");
@@ -63,21 +61,19 @@ public class MovieService {
         } while (wzóroceny.matcher(OcenaPobrana).matches());
     }
 
-    public void setRate(Integer index) {
-        Scanner sc = new Scanner(System.in);
-        Pattern wzóroceny = Pattern.compile("[0-9]?");
-        String OcenaPobrana;
+    public void addRate(Integer index) {
+       int inputRate  ;
+        Pattern ratePattern = Pattern.compile("[0-9]?");
+        String numberToMatch;
         do {
             System.out.print("Give a rating [0-9]: ");
-            OcenaPobrana = sc.nextLine();
-            if (wzóroceny.matcher(OcenaPobrana).matches()) {
-                movieDatabase.findById(index).addRate(Integer.valueOf(OcenaPobrana));
-
+            inputRate =  UserInput.getUserNumber();
+             numberToMatch = Integer.toString(inputRate);
+            if (ratePattern.matcher(numberToMatch).matches()) {
+                movieDatabase.findById(index).addRate(Integer.valueOf(inputRate));
             }
-        } while (wzóroceny.matcher(OcenaPobrana).matches());
+        } while (!ratePattern.matcher(numberToMatch).matches());
     }
-
-
     public Map<Integer, String> getCategories() {
 
         Map<Integer, String> MovieCategorys = new HashMap<>();
@@ -94,7 +90,6 @@ public class MovieService {
         MovieCategorys.put(11, "Rodzinny");
 
         return MovieCategorys;
-
     }
 
     public void showCategories() {
@@ -113,9 +108,7 @@ public class MovieService {
         Integer Gatunek = sc.nextInt();
         System.out.println("Chose number with category of movie");
         movieDatabase.findById(movieIndex).setType(categories.get(Gatunek));
-
     }
-
     public String returnCategory() {
         Map<Integer, String> categories = getCategories();
 
@@ -125,22 +118,16 @@ public class MovieService {
         return categories.get(Gatunek);
 
     }
-
-
-
-
-
-
-
     public  void search() {
-
+        String titleToSearch;
         int numberChoice = view.getUserNumber("Do you want to search by title (1), rate (2), type(3) or date(4).");
-
 
         switch (numberChoice) {
             case 1: {
-                String titleToSearch = view.getUserChoice(("You are searching by title, input text:"));
-                System.out.println(movieDatabase.findByTitle(titleToSearch));
+                titleToSearch = view.getUserChoice(("You are searching by title, input text:"));
+                titleToSearch = view.getUserChoice(("You are searching by title, input text:"));
+                movieDatabase.findByTitle(titleToSearch);
+                System.out.println();
             }break;
             case 2: {
                 System.out.println("You are searching by rate");
@@ -152,11 +139,9 @@ public class MovieService {
                     bigerRate = temp;
                 }
                 System.out.println(movieDatabase.findByAverageRate(smalerRate, bigerRate));
-
             }
             break;
             case 3: {
-
                 System.out.println("You are searching by type, chose your type:");
                returnCategory();
               String category  =returnCategory();
@@ -169,7 +154,6 @@ public class MovieService {
             default: {
                 System.out.println("Bad chose");
             }break;
-
         }
     }
 }

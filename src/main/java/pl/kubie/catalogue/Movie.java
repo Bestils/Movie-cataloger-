@@ -3,9 +3,6 @@ package pl.kubie.catalogue;
 import java.time.LocalDate;
 import java.util.*;
 
-/**
- * Created by Gladus on 02.02.2018.
- */
 public class Movie {
     private int id;
     private String title;
@@ -25,10 +22,6 @@ public class Movie {
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -81,8 +74,6 @@ public class Movie {
         this.type = type;
     }
 
-
-
     @Override
     public String toString() {
         return "Movie{" +
@@ -94,18 +85,18 @@ public class Movie {
                 ", comment=" + comment +
                 '}';
     }
+
     public void setComment(String comment) {
         this.comment.add(comment);
     }
+
     public void addRate(Integer rate) {
         this.rate.add(rate);
     }
 
-
     public void setDateOfAdd(LocalDate dateOfAdd) {
         this.dateOfAdd = dateOfAdd;
     }
-
 }
 
 
