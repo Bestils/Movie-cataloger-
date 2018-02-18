@@ -9,7 +9,7 @@ public class CatalogueApplication {
     static Scanner scanner = new Scanner(System.in);
     static View view = new View(scanner, movieDatabase);
     static UserInput userInput = new UserInput(scanner);
-    static MovieService movieService = new MovieService(movieDatabase,view,userInput);
+    static MovieService movieService = new MovieService(movieDatabase, view, userInput);
 
     public static void main(String[] args) {
         insertSampleData();
@@ -56,7 +56,7 @@ public class CatalogueApplication {
                     movieService.AddComment(numberChoice);
                 }
                 break;
-                case View.SHOW_COMMENTS:{
+                case View.SHOW_COMMENTS: {
                     view.ShowMovieDatabase(movieDatabase.findall());
                     int numberChoice = userInput.getUserNumber("Chose movie to show comments");
                     movieService.showComments(numberChoice);
@@ -89,6 +89,7 @@ public class CatalogueApplication {
             while (!poprawny);
         }
     }
+
     private static void showSortMenu() {
         System.out.println("#############################################################");
         System.out.println("#                                                           #");
@@ -112,6 +113,7 @@ public class CatalogueApplication {
             System.out.println("Wrong number !");
         }
     }
+
     private static void CreateNewMovie() {
         userInput.getUserChoice(); //prevents you from skipping the next item
         int id = movieDatabase.findall().size();
@@ -124,6 +126,7 @@ public class CatalogueApplication {
         Movie movie = new Movie(id, title, category, comment, rate);
         movieDatabase.save(movie);
     }
+
     static private void insertSampleData() {
         Arrays.asList(
                 new Movie(1, "Interstellar", "Sci-Fi", "Best Movie Ever!", 10),

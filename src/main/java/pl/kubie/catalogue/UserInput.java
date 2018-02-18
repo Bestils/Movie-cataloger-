@@ -11,9 +11,11 @@ public class UserInput {
     UserInput(Scanner sc) {
         this.sc = sc;
     }
+    @Override
     public int getUserNumber(String message) {
-        System.out.println(message);
-        return sc.nextInt();
+            System.out.println(message);
+            return getUserNumber();
+
     }
 
     public String getUserChoice(String message) {
@@ -22,8 +24,7 @@ public class UserInput {
     }
 
     public static int getUserNumber() {
-
-        return sc.nextInt();
+        return Integer.parseInt(sc.nextLine());
     }
 
     public String getUserChoice() {
