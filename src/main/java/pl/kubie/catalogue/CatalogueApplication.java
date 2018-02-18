@@ -9,7 +9,7 @@ public class CatalogueApplication {
     static Scanner scanner = new Scanner(System.in);
     static View view = new View(scanner, movieDatabase);
     static UserInput userInput = new UserInput(scanner);
-    static MovieService movieService = new MovieService(movieDatabase,view);
+    static MovieService movieService = new MovieService(movieDatabase,view,userInput);
 
     public static void main(String[] args) {
         insertSampleData();
@@ -99,7 +99,7 @@ public class CatalogueApplication {
         System.out.println("[2] Category");
         System.out.println("[3] Rating");
         System.out.println("[4] Date");
-        int numberChoice = userInput.getUserNumber()
+        int numberChoice = userInput.getUserNumber();
         if (numberChoice == 1)
             view.ShowMovieDatabase(movieDatabase.findAllSortByTitle());
         else if (numberChoice == 2)

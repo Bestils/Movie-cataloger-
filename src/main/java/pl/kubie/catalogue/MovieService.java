@@ -5,10 +5,12 @@ import java.util.regex.Pattern;
 public class MovieService {
     private MovieDatabase movieDatabase;
     private View view;
+    private UserInput userInput;
 
-    public MovieService(MovieDatabase movieDatabase,View view) {
+    public MovieService(MovieDatabase movieDatabase,View view,UserInput userInput) {
         this.movieDatabase = movieDatabase;
         this.view=view;
+        this.userInput=userInput;
     }
     private void createMovie() {
         System.out.println("#############################################################");
@@ -120,19 +122,19 @@ public class MovieService {
     }
     public  void search() {
         String titleToSearch;
-        int numberChoice = view.getUserNumber("Do you want to search by title (1), rate (2), type(3) or date(4).");
+        int numberChoice = userInput.getUserNumber("Do you want to search by title (1), rate (2), type(3) or date(4).");
 
         switch (numberChoice) {
             case 1: {
-                titleToSearch = view.getUserChoice(("You are searching by title, input text:"));
-                titleToSearch = view.getUserChoice(("You are searching by title, input text:"));
+                titleToSearch = userInput.getUserChoice(("You are searching by title, input text:"));
+                titleToSearch = userInput.getUserChoice(("You are searching by title, input text:"));
                 movieDatabase.findByTitle(titleToSearch);
                 System.out.println();
             }break;
             case 2: {
                 System.out.println("You are searching by rate");
-                int smalerRate = view.getUserNumber("First please input smaller number");
-                int bigerRate = view.getUserNumber("Now input bigger number");
+                int smalerRate = userInput.getUserNumber("First please input smaller number");
+                int bigerRate = userInput.getUserNumber("Now input bigger number");
                 if (smalerRate > bigerRate) {
                     int temp = smalerRate;
                     smalerRate = bigerRate;
@@ -148,7 +150,7 @@ public class MovieService {
                System.out.println(movieDatabase.findByType(category));
             }break;
             case 4: {
-                movieDatabase.findByDate(view.returnDate());
+                movieDatabase.findByDate(userInput.returnDate());
                 break;
             }
             default: {
