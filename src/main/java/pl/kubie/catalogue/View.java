@@ -53,7 +53,7 @@ public class View {
     public void ShowMovieDatabase(List<Movie> movies) {
         System.out.println("#############################################################");
         System.out.println("#                                                           #");
-        System.out.println("#                     *** Movie List***                    #");
+        System.out.println("#                     *** Movie List***                     #");
         System.out.println("#                                                           #");
         System.out.println("#############################################################");
 

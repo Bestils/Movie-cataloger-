@@ -11,7 +11,6 @@ public class UserInput {
     UserInput(Scanner sc) {
         this.sc = sc;
     }
-    @Override
     public int getUserNumber(String message) {
             System.out.println(message);
             return getUserNumber();
