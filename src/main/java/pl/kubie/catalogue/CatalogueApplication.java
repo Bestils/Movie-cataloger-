@@ -1,5 +1,8 @@
 package pl.kubie.catalogue;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -10,6 +13,8 @@ public class CatalogueApplication {
     static View view = new View(scanner, movieDatabase);
     static UserInput userInput = new UserInput(scanner);
     static MovieService movieService = new MovieService(movieDatabase, view, userInput);
+    private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("filmoteka"); ;
+    private static EntityManager entityManager = entityManagerFactory.createEntityManager();
 
     public static void main(String[] args) {
         insertSampleData();
@@ -125,6 +130,11 @@ public class CatalogueApplication {
         String category = movieService.returnCategory();
         Movie movie = new Movie(id, title, category, comment, rate);
         movieDatabase.save(movie);
+
+        entityManager.getTransaction().begin();
+        entityManager.persist(movie);
+        entityManager.getTransaction().commit();
+
     }
 
     static private void insertSampleData() {
@@ -135,6 +145,9 @@ public class CatalogueApplication {
                 new Movie(4, "Shape of Water", "Fantasy", "Simple Movie for evening", 7),
                 new Movie(4, "Efekt Motyla", "Sci-Fi", "Simple Movie for evening", 10)
         )
-                .forEach(movieDatabase::save);
+                .forEach( movieDatabase::save);
+
+
+
     }
 }

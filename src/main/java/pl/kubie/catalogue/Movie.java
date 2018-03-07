@@ -1,28 +1,34 @@
 package pl.kubie.catalogue;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.*;
-
+@Entity
 public class Movie {
-    private int id;
+
+    @Id
+    @GeneratedValue
+    private long id;
+
     private String title;
     private String type;
     private LocalDate dateOfAdd;
     private List<Integer> rate = new ArrayList<>();
     private List<String> comment = new ArrayList<>();
-
-    public Movie(int id, String title, String type, String comment, Integer rate) {
+    private static EntityManagerFactory entityManagerFactory ;
+    private static EntityManager entityManager ;
+    public Movie(int id, String title, String type, String comment, Integer rate,EntityManagerFactory entityManagerFactory,EntityManager entityManager ) {
         this.id = id;
         this.title = title;
         this.type = type;
         this.comment.add(comment);
         this.rate.add(rate);
         this.dateOfAdd = LocalDate.now();
+        this.entityManagerFactory=entityManagerFactory;
+        this.entityManager=entityManager;
     }
 
-    public int getId() {
-        return id;
-    }
+  
 
     public String getTitle() {
         return title;
