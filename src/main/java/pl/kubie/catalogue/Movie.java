@@ -5,30 +5,28 @@ import java.time.LocalDate;
 import java.util.*;
 @Entity
 public class Movie {
-
     @Id
     @GeneratedValue
-    private long id;
-
+    private int id;
     private String title;
     private String type;
     private LocalDate dateOfAdd;
     private List<Integer> rate = new ArrayList<>();
     private List<String> comment = new ArrayList<>();
-    private static EntityManagerFactory entityManagerFactory ;
-    private static EntityManager entityManager ;
-    public Movie(int id, String title, String type, String comment, Integer rate,EntityManagerFactory entityManagerFactory,EntityManager entityManager ) {
+
+    public Movie(int id, String title, String type, String comment, Integer rate) {
         this.id = id;
         this.title = title;
         this.type = type;
         this.comment.add(comment);
         this.rate.add(rate);
         this.dateOfAdd = LocalDate.now();
-        this.entityManagerFactory=entityManagerFactory;
-        this.entityManager=entityManager;
+
     }
 
-  
+    public long getId() {
+        return id;
+    }
 
     public String getTitle() {
         return title;

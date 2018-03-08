@@ -13,8 +13,6 @@ public class CatalogueApplication {
     static View view = new View(scanner, movieDatabase);
     static UserInput userInput = new UserInput(scanner);
     static MovieService movieService = new MovieService(movieDatabase, view, userInput);
-    private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("filmoteka"); ;
-    private static EntityManager entityManager = entityManagerFactory.createEntityManager();
 
     public static void main(String[] args) {
         insertSampleData();
@@ -85,7 +83,7 @@ public class CatalogueApplication {
                 movieNumber = scanner.nextInt();
                 if (movieNumber >= 0 && movieNumber < movieDatabase.findall().size()) {
                     poprawny = true;
-                    view.showMovieInformations(movieDatabase.findById(movieNumber));
+//                    view.showMovieInformations(movieDatabase.findById(movieNumber));
                 } else {
                     System.out.println("Bad  Movie number! Please give correct number");
                     poprawny = false;
@@ -131,9 +129,6 @@ public class CatalogueApplication {
         Movie movie = new Movie(id, title, category, comment, rate);
         movieDatabase.save(movie);
 
-        entityManager.getTransaction().begin();
-        entityManager.persist(movie);
-        entityManager.getTransaction().commit();
 
     }
 

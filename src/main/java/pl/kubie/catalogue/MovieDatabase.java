@@ -1,5 +1,8 @@
 package pl.kubie.catalogue;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -8,13 +11,18 @@ import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 public class MovieDatabase {
+    private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("filmoteka");
+    private static EntityManager entityManager = entityManagerFactory.createEntityManager();
 
     private List<Movie> movies = new ArrayList<>();
 
     public void save(Movie movie) {
-
+        entityManager.getTransaction().begin();
+        entityManager.persist(movie);
+        entityManager.getTransaction().commit();
         movies.add(movie);
     }
+
 
     public List<Movie> findall() {
         return movies;
