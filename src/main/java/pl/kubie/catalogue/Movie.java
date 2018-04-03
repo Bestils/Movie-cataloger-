@@ -3,11 +3,12 @@ package pl.kubie.catalogue;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.*;
+
 @Entity
 public class Movie {
     @Id
     @GeneratedValue
-    private int id;
+    private long id;
     private String title;
     private String type;
     private LocalDate dateOfAdd;
@@ -18,7 +19,7 @@ public class Movie {
 //            joinColumns= {@JoinColumn( name = "movieRates")},
 //            inverseJoinColumns = {@JoinColumn(name = "id")}
 //    )
-    private List<Rate> rate ;
+    private List<Rate> rate;
 
     @OneToMany(mappedBy = "movieCom")
 //    @JoinTable(
@@ -26,11 +27,12 @@ public class Movie {
 //            joinColumns= {@JoinColumn( name = "Id_com")},
 //            inverseJoinColumns = {@JoinColumn(name = "movieCom")}
 //    )
-    private List<Comments> comment ;
+    private List<Comments> comment;
 
+    public Movie() {
+    }
 
-
-    public Movie( String title, String type) {
+    public Movie(String title, String type) {
 
         this.title = title;
         this.type = type;

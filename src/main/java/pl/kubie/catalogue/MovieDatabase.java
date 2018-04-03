@@ -1,8 +1,6 @@
 package pl.kubie.catalogue;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -14,15 +12,32 @@ public class MovieDatabase {
     private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("filmoteka");
     private static EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-    private List<Movie> movies = new ArrayList<>();
 
-    public void save(Movie movie,Comments coment, Rate rate) {
+    public void save(Movie movie, Comments comment, Rate rate) {
 
-        movies.add(movie);
+
         entityManager.getTransaction().begin();
-        entityManager.persist(coment);
+        entityManager.persist(comment);
         entityManager.persist(rate);
         entityManager.persist(movie);
+        entityManager.getTransaction().commit();
+
+
+    }
+
+    public void saveRate(Rate rate) {
+
+        entityManager.getTransaction().begin();
+        entityManager.persist(rate);
+        entityManager.getTransaction().commit();
+
+
+    }
+
+    public void saveComment(Comments comment) {
+
+        entityManager.getTransaction().begin();
+        entityManager.persist(comment);
         entityManager.getTransaction().commit();
 
 
@@ -33,62 +48,71 @@ public class MovieDatabase {
         entityManagerFactory.close();
     }
 
+
+    public void remove(Movie movie) {
+
+        entityManager.getTransaction().begin();
+        entityManager.remove(movie);
+        entityManager.getTransaction().commit();
+    }
+
+    public  void findAll(){
+        TypedQuery<Movie> querry = entityManager.createQuery("select m from Movie m, Rate r,Comments c  where c.movie_id=r.movie_id and c.movie_id=m.movie_id",Movie.class) ;
+
+    }
+
+    public Movie findById(int id) {
+      TypedQuery<Movie> querry = entityManager.createQuery("select title ,avg(rate.rate) from rate ,movie where rate.movie_id=movie.id  and id =" + id,Movie.class);
+
+    }
+
+    public Movie findByTitle(String title) {
+        TypedQuery<Movie> querry = entityManager.createQuery("select m from Movie m, Rate r,Comments c  where c.movie_id=r.movie_id and c.movie_id=m.movie_id and m.title="+title,Movie.class) ;
+
+    }
+
+    public Movie findByType(String type) {
+        TypedQuery<Movie> querry = entityManager.createQuery("select m from Movie m, Rate r,Comments c  where c.movie_id=r.movie_id and c.movie_id=m.movie_id and m.type="+type,Movie.class) ;
+    }
+
+    public List<Movie> findByAverageRate(Integer rate1, Integer rate2) {
+        TypedQuery<Movie> querry = entityManager.createQuery("select m from Movie m, Rate r,Comments c  where c.movie_id=r.movie_id and c.movie_id=m.movie_id and  r.rate between "+rate1 +"and "+rate2,Movie.class) ;
+
+    }
+
+    public Movie findByDate(LocalDate date) {
+        TypeQuery<> querry = entityManager.createQuery("select title ,avg(rate.rate) from rate ,movie, comment where rate.movie_id=movie.id " +
+                "and comments.movie.id=movie.id  and dateOfAdd=" + date);
+    }
+
+    public List<Movie> findAllSortByTitle() {
+        TypeQuery<> querry = entityManager.createQuery("select title ,avg(rate.rate) from rate ,movie, comment where rate.movie_id=movie.id " +
+                "and comments.movie.id=movie.id Order by  title");
+
+    }
+
+    public List<Movie> findAllSortByRate() {
+        TypeQuery<> querry = entityManager.createQuery("select title ,avg(rate.rate) from rate ,movie, comment where rate.movie_id=movie.id " +
+                "and comments.movie.id=movie.id Order by  rate");
+    }
+
+    public List<Movie> findAllSortByDate() {
+        TypeQuery<> querry = entityManager.createQuery("select title ,avg(rate.rate) from rate ,movie, comment where rate.movie_id=movie.id " +
+                "and comments.movie.id=movie.id Order by  dateOfAdd");
+    }
+
+    public List<Movie> findAllSortByCategory() {
+        TypeQuery<> querry = entityManager.createQuery("select title ,avg(rate.rate) from rate ,movie, comment where rate.movie_id=movie.id " +
+                "and comments.movie.id=movie.id Order by  movie.type");
+    }
+
+    public List<Movie> findAllSortByCategory() {
+        TypedQuery<Comments> querry = entityManager.createQuery("select title ,avg(rate.rate) from rate ,movie, comment where rate.movie_id=movie.id " +
+                "and comments.movie.id=movie.id Order by  movie.type");
+        List<Comments> comments = querry.getResultList();
+    }
+
 }
 
-//
-//    public List<Movie> findall() {
-//        return movies;
-//
-//    }
-//
-//    public void remove(Integer index) {
-//
-//        movies.remove(index);
-//    }
-//    public Movie findById(int id) {
-//        return movies.stream()
-//                .filter(f -> f.getId() == id)
-//                .findAny()
-//                .orElseThrow(NoSuchElementException::new);
-//
-//    }
-//    public Movie findByTitle(String title) {
-//        return movies.stream()
-//                .filter(f -> f.getTitle().equals(title))
-//                .findAny()
-//                .orElseThrow(NoSuchElementException::new);
-//
-//    }
-//    public Movie findByType(String type) {
-//        return movies.stream()
-//                .filter(f -> f.getTitle().equals(type))
-//                .findAny()
-//                .orElseThrow(NoSuchElementException::new);
-//    }
-//    public List<Movie> findByAverageRate(int rate1, int rate2) {
-//        return movies.stream()
-//                .filter(f -> (f.getAverageRate() <= rate2) && (f.getAverageRate() >= rate1))
-//                .collect(Collectors.toList());
-//    }
-//    public Movie findByDate(LocalDate date) {
-//        return movies.stream()
-//                .filter(f -> f.getDate().equals(date))
-//                .findAny()
-//                .orElseThrow(NoSuchElementException::new);
-//    }
-//    public List<Movie> findAllSortByTitle() {
-//        return movies.stream().sorted(Comparator.comparing(Movie::getTitle).reversed()).collect(Collectors.toList());
-//    }
-//
-//    public List<Movie> findAllSortByRate() {
-//        return movies.stream().sorted(Comparator.comparing(Movie::getAverageRate).reversed()).collect(Collectors.toList());
-//    }
-//    public List<Movie> findAllSortByDate() {
-//        return movies.stream().sorted(Comparator.comparing(Movie::getDate).reversed()).collect(Collectors.toList());
-//    }
-//    public List<Movie> findAllSortByCategory() {
-//        return movies.stream().sorted(Comparator.comparing(Movie::getType).reversed()).collect(Collectors.toList());
-//    }
-//}
 
 
