@@ -63,13 +63,13 @@ public class View {
         }
     }
 
-    public static void showMovieInformations(Movie movie) {
-        System.out.println("Title: " + movie.getTitle());
-        System.out.println("Category : " + movie.getType());
-        System.out.println("Actual rating of movie: ");
-        System.out.println(movie.getAverageRate());
-        System.out.println("\n");
-    }
+//    public static void showMovieInformations(Movie movie) {
+//        System.out.println("Title: " + movie.getTitle());
+//        System.out.println("Category : " + movie.getType());
+//        System.out.println("Actual rating of movie: ");
+//        System.out.println(movie.getAverageRate());
+//        System.out.println("\n");
+//    }
 
 }
 
