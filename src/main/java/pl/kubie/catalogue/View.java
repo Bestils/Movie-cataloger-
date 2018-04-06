@@ -59,17 +59,19 @@ public class View {
 
         Integer iterator = 0;
         for (Movie ExampleMovie : movies) {
-            System.out.println("Movie [" + iterator++ + "]: " + ExampleMovie.getTitle());
+            System.out.println("Movie [" + ExampleMovie.getId() + "]: " + ExampleMovie.getTitle());
         }
     }
 
-//    public static void showMovieInformations(Movie movie) {
-//        System.out.println("Title: " + movie.getTitle());
-//        System.out.println("Category : " + movie.getType());
+    public static void showMovieInformations(Movie movie) {
+        System.out.println("ID:  "+ movie.getId());
+        System.out.println("Title: " + movie.getTitle());
+        System.out.println("Category : " + movie.getType());
+
 //        System.out.println("Actual rating of movie: ");
 //        System.out.println(movie.getAverageRate());
-//        System.out.println("\n");
-//    }
+        System.out.println("\n");
+    }
 
 }
 

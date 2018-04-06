@@ -34,13 +34,15 @@ public class MovieService {
         Movie movie = new Movie(movieTitle, type);
         Rate rateObject = new Rate(rate, movie);
         Comments commentObject = new Comments(comment, movie);
-        movieDatabase.save(movie, commentObject, rateObject);
+        movieDatabase.save(movie);
+        movieDatabase.saveComment(commentObject);
+        movieDatabase.saveRate(rateObject);
     }
 
     public void DeleteMovie(Integer Index) {
 
 
-        movieDatabase.remove(Index);
+//        movieDatabase.remove(Index);
         System.out.println("Movie  deleted" + "\n");
     }
 
@@ -53,7 +55,7 @@ public class MovieService {
 
     public void showComments(Integer index) {
         Scanner sc = new Scanner(System.in);
-        movieDatabase.findById(index).getComment();
+//        movieDatabase.findById(index).getComment();
     }
 
     public Integer returnRate() {
@@ -132,42 +134,42 @@ public class MovieService {
         return categories.get(Gatunek);
 
     }
-//    public  void search() {
-//        String titleToSearch;
-//        int numberChoice = userInput.getUserNumber("Do you want to search by title (1), rate (2), type(3) or date(4).");
-//
-//        switch (numberChoice) {
-//            case 1: {
-//                titleToSearch = userInput.getUserChoice(("You are searching by title, input text:"));
-//                titleToSearch = userInput.getUserChoice(("You are searching by title, input text:"));
-//                movieDatabase.findByTitle(titleToSearch);
-//                System.out.println();
-//            }break;
-//            case 2: {
-//                System.out.println("You are searching by rate");
-//                int smalerRate = userInput.getUserNumber("First please input smaller number");
-//                int bigerRate = userInput.getUserNumber("Now input bigger number");
-//                if (smalerRate > bigerRate) {
-//                    int temp = smalerRate;
-//                    smalerRate = bigerRate;
-//                    bigerRate = temp;
-//                }
-//                System.out.println(movieDatabase.findByAverageRate(smalerRate, bigerRate));
-//            }
-//            break;
-//            case 3: {
-//                System.out.println("You are searching by type, chose your type:");
-//               returnCategory();
-//              String category  =returnCategory();
-//               System.out.println(movieDatabase.findByType(category));
-//            }break;
-//            case 4: {
-//                movieDatabase.findByDate(userInput.returnDate());
-//                break;
-//            }
-//            default: {
-//                System.out.println("Bad chose");
-//            }break;
-//        }
-//    } ---------------> MovieDatabase ma funkcje wyszukaj by więc w sumie działa prawie tak samo jak to
+    public  void search() {
+        String titleToSearch;
+        int numberChoice = userInput.getUserNumber("Do you want to search by title (1), rate (2), type(3) or date(4).");
+
+        switch (numberChoice) {
+            case 1: {
+                titleToSearch = userInput.getUserChoice(("You are searching by title, input text:"));
+                titleToSearch = userInput.getUserChoice(("You are searching by title, input text:"));
+                movieDatabase.findByTitle(titleToSearch);
+                System.out.println();
+            }break;
+            case 2: {
+                System.out.println("You are searching by rate");
+                int smalerRate = userInput.getUserNumber("First please input smaller number");
+                int bigerRate = userInput.getUserNumber("Now input bigger number");
+                if (smalerRate > bigerRate) {
+                    int temp = smalerRate;
+                    smalerRate = bigerRate;
+                    bigerRate = temp;
+                }
+                System.out.println(movieDatabase.findByAverageRate(smalerRate, bigerRate));
+            }
+            break;
+            case 3: {
+                System.out.println("You are searching by type, chose your type:");
+               returnCategory();
+              String category  =returnCategory();
+               System.out.println(movieDatabase.findByType(category));
+            }break;
+            case 4: {
+                movieDatabase.findByDate(userInput.returnDate());
+                break;
+            }
+            default: {
+                System.out.println("Bad chose");
+            }break;
+        }
+    }
 }

@@ -13,20 +13,12 @@ public class Movie {
     private String type;
     private LocalDate dateOfAdd;
 
-    @OneToMany(mappedBy = "movieRate")
-//    @JoinTable(
-//            name="Movie rates",
-//            joinColumns= {@JoinColumn( name = "movieRates")},
-//            inverseJoinColumns = {@JoinColumn(name = "id")}
-//    )
+    @OneToMany(mappedBy = "movieRate" ,fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+
     private List<Rate> rate;
 
-    @OneToMany(mappedBy = "movieCom")
-//    @JoinTable(
-//            name="Comments",
-//            joinColumns= {@JoinColumn( name = "Id_com")},
-//            inverseJoinColumns = {@JoinColumn(name = "movieCom")}
-//    )
+    @OneToMany(mappedBy = "movieCom" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+
     private List<Comments> comment;
 
     public Movie() {
@@ -52,39 +44,12 @@ public class Movie {
         return type;
     }
 
-//    public void getComment() {
-//        Iterator<String> myListIterator = comment.iterator();
-//        while (myListIterator.hasNext()) {
-//            String coord = myListIterator.next();
-//            System.out.print("\r");
-//            System.out.print(coord);
-//
-//        }
-//    }
+
 
     public LocalDate getDate() {
         return dateOfAdd;
     }
 
-//    public void getRate() {
-//        Iterator<Integer> myListIterator = rate.iterator();
-//        while (myListIterator.hasNext()) {
-//            Integer coord = myListIterator.next();
-//            System.out.print("\r");
-//            System.out.print(coord);
-//        }
-//    }
-//
-//    public double getAverageRate() {
-//        Integer sum = 0;
-//        if (!rate.isEmpty()) {
-//            for (Integer mark : rate) {
-//                sum += mark;
-//            }
-//            return sum.doubleValue() / rate.size();
-//        }
-//        return sum;
-//    }
 
     public void setTitle(String title) {
         this.title = title;
@@ -105,14 +70,6 @@ public class Movie {
                 ", comment=" + comment +
                 '}';
     }
-
-//    public void setComment(String comment) {
-//        this.comment.add(comment);
-//    }
-//
-//    public void addRate(Integer rate) {
-//        this.rate.add(rate);
-//    }
 
     public void setDateOfAdd(LocalDate dateOfAdd) {
         this.dateOfAdd = dateOfAdd;

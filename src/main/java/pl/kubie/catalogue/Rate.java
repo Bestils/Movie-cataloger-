@@ -10,7 +10,7 @@ public class Rate {
 
     private Integer rate;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "movie_id")
     private Movie movieRate;
 

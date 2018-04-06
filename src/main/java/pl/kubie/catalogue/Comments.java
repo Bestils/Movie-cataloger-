@@ -9,7 +9,7 @@ public class Comments {
     @GeneratedValue
     private long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name = "movie_id")
     private Movie movieCom;
     private String comment;
