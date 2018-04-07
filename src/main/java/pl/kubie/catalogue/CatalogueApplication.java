@@ -43,10 +43,10 @@ public class CatalogueApplication {
                 }
                 break;
                 case View.SORT_MOVIES:
-//                    showSortMenu();
+                    System.out.println("This function has been deleted");
                     break;
                 case View.SEARCH_MOVIE: {
-//                    movieService.search();
+                    movieService.search();
                 }
 
                 break;
@@ -87,9 +87,6 @@ public class CatalogueApplication {
                 movieNumber = userInput.getUserNumber();
 
                     view.showMovieInformations(movieDatabase.findById(movieNumber));
-
-
-
 
         }
     }

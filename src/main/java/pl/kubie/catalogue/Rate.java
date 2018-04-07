@@ -14,6 +14,7 @@ public class Rate {
     @JoinColumn(name = "movie_id")
     private Movie movieRate;
 
+    public Rate(){}
     public Rate(Integer rate, Movie movie) {
         this.rate = rate;
         this.movieRate = movie;

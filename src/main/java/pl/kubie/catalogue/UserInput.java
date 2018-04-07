@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class UserInput {
    static Scanner sc;
    static  boolean isNumber;
-   static  int number;
     UserInput(Scanner sc) {
         this.sc = sc;
     }
@@ -27,16 +26,18 @@ public class UserInput {
     public static int getUserNumber() {
 do {
 
-    if (sc.hasNextInt()) {
-         number= Integer.parseInt(sc.nextLine());
-        isNumber=false;
+    try {
+        isNumber = false;
+        return Integer.parseInt(sc.nextLine());
 
-    }else{
-        System.out.println("It's not number");
-        isNumber=true;
+
+    } catch (NumberFormatException e) {
+
+        System.out.println("nie liczba");
+        return 0;
     }
+
 }while (isNumber);
-        return number;
     }
 
     public String getUserChoice() {

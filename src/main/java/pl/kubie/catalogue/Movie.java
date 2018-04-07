@@ -17,6 +17,8 @@ public class Movie {
 
     private List<Rate> rate;
 
+
+
     @OneToMany(mappedBy = "movieCom" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 
     private List<Comments> comment;
@@ -31,6 +33,18 @@ public class Movie {
         this.dateOfAdd = LocalDate.now();
 
     }
+    public LocalDate getDateOfAdd() {
+        return dateOfAdd;
+    }
+
+    public List<Rate> getRate() {
+        return rate;
+    }
+
+    public List<Comments> getComment() {
+        return comment;
+    }
+
 
     public long getId() {
         return id;
@@ -66,8 +80,6 @@ public class Movie {
                 ", title='" + title + '\'' +
                 ", type='" + type + '\'' +
                 ", dateOfAdd=" + dateOfAdd +
-                ", rate=" + rate +
-                ", comment=" + comment +
                 '}';
     }
 

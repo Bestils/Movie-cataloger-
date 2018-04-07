@@ -39,10 +39,10 @@ public class MovieService {
         movieDatabase.saveRate(rateObject);
     }
 
-    public void DeleteMovie(Integer Index) {
+    public void DeleteMovie(Integer index) {
 
 
-//        movieDatabase.remove(Index);
+       movieDatabase.remove(movieDatabase.findById(index));
         System.out.println("Movie  deleted" + "\n");
     }
 
@@ -54,8 +54,12 @@ public class MovieService {
     }
 
     public void showComments(Integer index) {
-        Scanner sc = new Scanner(System.in);
-//        movieDatabase.findById(index).getComment();
+
+Movie movie=    movieDatabase.findById(index);
+List<Comments> movieSet=movie.getComment();
+        for(int i=1; i<movieSet.size()+1;i++) {
+            System.out.println(movieSet.get(i));
+        }
     }
 
     public Integer returnRate() {

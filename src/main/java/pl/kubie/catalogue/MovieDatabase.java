@@ -1,5 +1,7 @@
 package pl.kubie.catalogue;
-import  pl.kubie.catalogue.Movie;
+
+import pl.kubie.catalogue.Movie;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -15,11 +17,9 @@ public class MovieDatabase {
 
     public void save(Movie movie) {
 
-
         entityManager.getTransaction().begin();
         entityManager.persist(movie);
         entityManager.getTransaction().commit();
-
 
     }
 
@@ -29,7 +29,6 @@ public class MovieDatabase {
         entityManager.persist(rate);
         entityManager.getTransaction().commit();
 
-
     }
 
     public void saveComment(Comments comment) {
@@ -37,7 +36,6 @@ public class MovieDatabase {
         entityManager.getTransaction().begin();
         entityManager.persist(comment);
         entityManager.getTransaction().commit();
-
 
     }
 
@@ -54,8 +52,8 @@ public class MovieDatabase {
         entityManager.getTransaction().commit();
     }
 
-    public   List<Movie> findAll(){
-        TypedQuery<Movie> querry = entityManager.createQuery("select m from Movie m",Movie.class) ;
+    public List<Movie> findAll() {
+        TypedQuery<Movie> querry = entityManager.createQuery("select m from Movie m", Movie.class);
         List<Movie> movies = querry.getResultList();
         return movies;
     }
@@ -67,36 +65,34 @@ public class MovieDatabase {
         return querry.getSingleResult();
     }
 
-    public  List<Movie> findByTitle(String title) {
-        TypedQuery<Movie> querry = entityManager.createQuery("select m from Movie m where  m.title = ?1",Movie.class) ;
-         querry.setParameter(1,title);
+    public List<Movie> findByTitle(String title) {
+        TypedQuery<Movie> querry = entityManager.createQuery("select m from Movie m where  m.title = ?1", Movie.class);
+        querry.setParameter(1, title);
         List<Movie> movies = querry.getResultList();
         return movies;
     }
 
     public List<Movie> findByType(String type) {
-        TypedQuery<Movie> querry = entityManager.createQuery("select m from Movie m where  m.type=?1",Movie.class) ;
-        querry.setParameter(1,type);
+        TypedQuery<Movie> querry = entityManager.createQuery("select m from Movie m where  m.type=?1", Movie.class);
+        querry.setParameter(1, type);
         List<Movie> movies = querry.getResultList();
         return movies;
     }
 
     public List<Movie> findByAverageRate(Integer rate1, Integer rate2) {
-        TypedQuery<Movie> querry = entityManager.createQuery("select m from Movie m where  m.rate between ?1 and ?2",Movie.class) ;
-        querry.setParameter(1,rate1);
-        querry.setParameter(2,rate2);
+        TypedQuery<Movie> querry = entityManager.createQuery("select m from Movie m where  m.rate between ?1 and ?2", Movie.class);
+        querry.setParameter(1, rate1);
+        querry.setParameter(2, rate2);
         List<Movie> movies = querry.getResultList();
         return movies;
     }
 
-    public   List<Movie> findByDate(LocalDate date) {
-        TypedQuery<Movie> querry = entityManager.createQuery("select m from Movie m where  m.dateOffAdd =?1",Movie.class) ;
-        querry.setParameter(1,date);
-
+    public List<Movie> findByDate(LocalDate date) {
+        TypedQuery<Movie> querry = entityManager.createQuery("select m from Movie m where  m.dateOffAdd =?1", Movie.class);
+        querry.setParameter(1, date);
         List<Movie> movies = querry.getResultList();
         return movies;
     }
-
 
 
 }

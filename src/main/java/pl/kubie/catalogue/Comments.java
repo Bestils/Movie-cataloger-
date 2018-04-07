@@ -13,7 +13,7 @@ public class Comments {
     @JoinColumn(name = "movie_id")
     private Movie movieCom;
     private String comment;
-
+public Comments(){}
     public Comments(String comment, Movie movie) {
         this.comment = comment;
         this.movieCom = movie;
@@ -43,5 +43,9 @@ public class Comments {
         this.movieCom = movieCom;
     }
 
+    @Override
+    public String toString() {
+        return comment;
 
+    }
 }
