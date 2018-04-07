@@ -8,6 +8,8 @@ import java.util.Scanner;
  */
 public class UserInput {
    static Scanner sc;
+   static  boolean isNumber;
+   static  int number;
     UserInput(Scanner sc) {
         this.sc = sc;
     }
@@ -23,7 +25,18 @@ public class UserInput {
     }
 
     public static int getUserNumber() {
-        return Integer.parseInt(sc.nextLine());
+do {
+
+    if (sc.hasNextInt()) {
+         number= Integer.parseInt(sc.nextLine());
+        isNumber=false;
+
+    }else{
+        System.out.println("It's not number");
+        isNumber=true;
+    }
+}while (isNumber);
+        return number;
     }
 
     public String getUserChoice() {

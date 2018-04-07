@@ -169,7 +169,8 @@ public class MovieService {
             }
             default: {
                 System.out.println("Bad chose");
-            }break;
+            }
+            break;
         }
     }
 }

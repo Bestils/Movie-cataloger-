@@ -15,14 +15,14 @@ public class CatalogueApplication {
 
     static MovieService movieService = new MovieService(movieDatabase, view, userInput);
 
-    //
+
     public static void main(String[] args) {
-        insertSampleData();
+//        insertSampleData();
 //        movieDatabase.findById(userInput.getUserNumber());
         do {
             view.showMenu();
-            userInput.getUserNumber()
-            switch () {
+           int switchCase =  userInput.getUserNumber();
+            switch (switchCase) {
                 case View.AD_MOVIE:
                     CreateNewMovie();
 
@@ -84,7 +84,7 @@ public class CatalogueApplication {
             view.ShowMovieDatabase(movieDatabase.findAll());
             System.out.println("Chose number of movie whose you want and push ENTER");
             Integer movieNumber;
-                movieNumber = scanner.nextInt();
+                movieNumber = userInput.getUserNumber();
 
                     view.showMovieInformations(movieDatabase.findById(movieNumber));
 
@@ -94,32 +94,10 @@ public class CatalogueApplication {
         }
     }
 
-//    private static void showSortMenu() {
-//        System.out.println("#############################################################");
-//        System.out.println("#                                                           #");
-//        System.out.println("#                 ***Sort movie by:***                      #");
-//        System.out.println("#                                                           #");
-//        System.out.println("#############################################################");
-//        System.out.println("[1] Title");
-//        System.out.println("[2] Category");
-//        System.out.println("[3] Rating");
-//        System.out.println("[4] Date");
-//        int numberChoice = userInput.getUserNumber();
-//        if (numberChoice == 1)
-//            view.ShowMovieDatabase(movieDatabase.findAllSortByTitle());
-//        else if (numberChoice == 2)
-//            view.ShowMovieDatabase(movieDatabase.findAllSortByCategory());
-//        else if (numberChoice == 3)
-//            view.ShowMovieDatabase(movieDatabase.findAllSortByRate());
-//        else if (numberChoice == 4)
-//            view.ShowMovieDatabase(movieDatabase.findAllSortByDate());
-//        else {
-//            System.out.println("Wrong number !");
-//        }
-//    }
+
 
     private static void CreateNewMovie() {
-        userInput.getUserChoice(); //prevents you from skipping the next item
+
 
         String title = userInput.getUserChoice("Please, enter movie Title: ");
         String comment = userInput.getUserChoice("Please add comment to movie ");
@@ -192,36 +170,5 @@ public class CatalogueApplication {
 
     }
 
-//    static private void insertSampleData() {
-//        Arrays.asList(
-//                new Movie( "Interstellar", "Sci-Fi"),
-//                new Comments("Best Movie Ever!" ),
-//                new Movie( "Incepcja", "Sci-Fi" ),
-//                new Movie( "Ojciec chrzestny ", "Kryminał"),
-//                new Movie( "Shape of Water", "Fantasy"),
-//                new Movie( "Efekt Motyla", "Sci-Fi")
-//        )
-//                .forEach( movieDatabase::save);
-//        Arrays.asList(
-// new Rate(10, example);
-// new Rate(9, example);
-// new Rate(10, example);
-//new Rate(10, example2);
-// new Rate(7, example2);
-// new Rate(8, example2);
-// new Rate(9, example2);
-//new Rate(10, example3);
-// new Rate(9, example3);
-//new Rate(9, example3);
-// new Rate(9, example4);
-// new Rate(8, example4);
-// new Rate(7, example4);
-// new Rate(6, example5);
-// new Rate(5, example5);
-// new Rate(6, example5);
-//        )
-//                .forEach( movieDatabase::saveRAte);
-//
-//
 
 }

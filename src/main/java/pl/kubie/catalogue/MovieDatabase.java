@@ -97,32 +97,7 @@ public class MovieDatabase {
         return movies;
     }
 
-//    public List<Movie> findAllSortByTitle() {
-//        TypeQuery<> querry = entityManager.createQuery("select title ,avg(rate.rate) from rate ,movie, comment where rate.movie_id=movie.id " +
-//                "and comments.movie.id=movie.id Order by  title");
-//
-//    }
-//
-//    public List<Movie> findAllSortByRate() {
-//        TypeQuery<> querry = entityManager.createQuery("select title ,avg(rate.rate) from rate ,movie, comment where rate.movie_id=movie.id " +
-//                "and comments.movie.id=movie.id Order by  rate");
-//    }
-//
-//    public List<Movie> findAllSortByDate() {
-//        TypeQuery<> querry = entityManager.createQuery("select title ,avg(rate.rate) from rate ,movie, comment where rate.movie_id=movie.id " +
-//                "and comments.movie.id=movie.id Order by  dateOfAdd");
-//    }
-//
-//    public List<Movie> findAllSortByCategory() {
-//        TypeQuery<> querry = entityManager.createQuery("select title ,avg(rate.rate) from rate ,movie, comment where rate.movie_id=movie.id " +
-//                "and comments.movie.id=movie.id Order by  movie.type");
-//    }
-//
-//    public List<Movie> findAllSortByCategory() {
-//        TypedQuery<Comments> querry = entityManager.createQuery("select title ,avg(rate.rate) from rate ,movie, comment where rate.movie_id=movie.id " +
-//                "and comments.movie.id=movie.id Order by  movie.type");
-//        List<Comments> comments = querry.getResultList();
-//    }
+
 
 }
 
