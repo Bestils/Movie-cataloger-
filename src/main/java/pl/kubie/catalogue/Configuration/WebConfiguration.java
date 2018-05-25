@@ -1,14 +1,14 @@
 package pl.kubie.catalogue.Configuration;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-/**
- * Created by Gladus on 25.05.2018.
- */
+//
+//@Import(pl.kubie.catalogue.Configuration.ManualConfiguration.class)
 @Configuration
 @EnableWebMvc
 @ComponentScan("pl.kubie.catalogue.Implementations")

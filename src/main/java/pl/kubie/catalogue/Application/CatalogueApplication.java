@@ -2,6 +2,8 @@ package pl.kubie.catalogue.Application;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import pl.kubie.catalogue.Configuration.WebConfiguration;
 import pl.kubie.catalogue.Functions.Comments;
 import pl.kubie.catalogue.Functions.MovieService;
 import pl.kubie.catalogue.Functions.Rate;
@@ -27,6 +29,9 @@ public class CatalogueApplication {
         SpringApplication.run(CatalogueApplication.class, args);
 //        insertSampleData();
 //        movieDatabase.findById(userInput.getUserNumber());
+
+//        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(WebConfiguration.class);
+
         do {
             view.showMenu();
            int switchCase =  userInput.getUserNumber();
