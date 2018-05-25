@@ -1,4 +1,6 @@
-package pl.kubie.catalogue;
+package pl.kubie.catalogue.Functions;
+
+import pl.kubie.catalogue.database.Movie;
 
 import javax.persistence.*;
 

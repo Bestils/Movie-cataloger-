@@ -1,11 +1,17 @@
-package pl.kubie.catalogue;
+package pl.kubie.catalogue.Application;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import java.util.Arrays;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import pl.kubie.catalogue.Functions.Comments;
+import pl.kubie.catalogue.Functions.MovieService;
+import pl.kubie.catalogue.Functions.Rate;
+import pl.kubie.catalogue.database.Movie;
+import pl.kubie.catalogue.database.MovieDatabase;
+import pl.kubie.catalogue.ViewFunctions.View;
+
+import javax.persistence.NoResultException;
 import java.util.Scanner;
-
+@SpringBootApplication
 public class CatalogueApplication {
 
     static MovieDatabase movieDatabase = new MovieDatabase();
@@ -16,7 +22,9 @@ public class CatalogueApplication {
     static MovieService movieService = new MovieService(movieDatabase, view, userInput);
 
 
+
     public static void main(String[] args) {
+        SpringApplication.run(CatalogueApplication.class, args);
 //        insertSampleData();
 //        movieDatabase.findById(userInput.getUserNumber());
         do {
@@ -78,15 +86,22 @@ public class CatalogueApplication {
     }
 
     private static void showAllMovies() {
-        boolean poprawny;
+        boolean poprawny=true;
 
         if (movieDatabase.findAll().size() > 0) {
             view.ShowMovieDatabase(movieDatabase.findAll());
             System.out.println("Chose number of movie whose you want and push ENTER");
             Integer movieNumber;
-                movieNumber = userInput.getUserNumber();
 
-                    view.showMovieInformations(movieDatabase.findById(movieNumber));
+do {
+            try {
+                view.showMovieInformations(movieDatabase.findById(userInput.getUserNumber()));
+                poprawny=false;
+            } catch (NoResultException e) {
+                poprawny=true;
+                System.out.println("Podano błędne id filmu");
+                view.ShowMovieDatabase(movieDatabase.findAll());
+            }}while (poprawny);
 
         }
     }

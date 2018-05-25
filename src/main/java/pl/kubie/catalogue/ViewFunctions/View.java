@@ -1,6 +1,8 @@
-package pl.kubie.catalogue;
+package pl.kubie.catalogue.ViewFunctions;
 
-import java.time.LocalDate;
+import pl.kubie.catalogue.database.Movie;
+import pl.kubie.catalogue.database.MovieDatabase;
+
 import java.util.*;
 
 /**

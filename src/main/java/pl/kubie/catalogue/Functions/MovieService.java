@@ -1,4 +1,9 @@
-package pl.kubie.catalogue;
+package pl.kubie.catalogue.Functions;
+
+import pl.kubie.catalogue.Application.UserInput;
+import pl.kubie.catalogue.ViewFunctions.View;
+import pl.kubie.catalogue.database.Movie;
+import pl.kubie.catalogue.database.MovieDatabase;
 
 import java.util.*;
 import java.util.regex.Pattern;

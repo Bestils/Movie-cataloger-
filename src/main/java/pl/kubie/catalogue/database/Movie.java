@@ -1,4 +1,7 @@
-package pl.kubie.catalogue;
+package pl.kubie.catalogue.database;
+
+import pl.kubie.catalogue.Functions.Comments;
+import pl.kubie.catalogue.Functions.Rate;
 
 import javax.persistence.*;
 import java.time.LocalDate;

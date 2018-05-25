@@ -1,4 +1,4 @@
-package pl.kubie.catalogue;
+package pl.kubie.catalogue.Application;
 
 import java.time.LocalDate;
 import java.util.Scanner;

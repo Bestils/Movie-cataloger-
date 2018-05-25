@@ -1,14 +1,11 @@
-package pl.kubie.catalogue;
+package pl.kubie.catalogue.database;
 
-import pl.kubie.catalogue.Movie;
+import pl.kubie.catalogue.Functions.Comments;
+import pl.kubie.catalogue.Functions.Rate;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
 
 public class MovieDatabase {
     private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("filmoteka");
