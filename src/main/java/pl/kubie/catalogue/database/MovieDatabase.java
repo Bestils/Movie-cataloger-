@@ -1,12 +1,13 @@
 package pl.kubie.catalogue.database;
 
+import org.springframework.stereotype.Repository;
 import pl.kubie.catalogue.Functions.Comments;
 import pl.kubie.catalogue.Functions.Rate;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
-
+@Repository
 public class MovieDatabase {
     private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("filmoteka");
     private static EntityManager entityManager = entityManagerFactory.createEntityManager();

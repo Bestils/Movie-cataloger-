@@ -1,5 +1,6 @@
 package pl.kubie.catalogue.database;
 
+import org.springframework.stereotype.Repository;
 import pl.kubie.catalogue.Functions.Comments;
 import pl.kubie.catalogue.Functions.Rate;
 
